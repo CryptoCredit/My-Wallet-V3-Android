@@ -37,6 +37,8 @@ public class ContactsInvitationBuilderActivity extends BaseAuthActivity
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         submitFragmentTransaction(new ContactsInvitationBuilderRecipientFragment());
+
+        viewModel.onViewReady();
     }
 
     @Override

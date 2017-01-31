@@ -18,6 +18,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import static android.support.design.widget.Snackbar.LENGTH_INDEFINITE;
+import static android.support.design.widget.Snackbar.LENGTH_LONG;
+import static android.support.design.widget.Snackbar.LENGTH_SHORT;
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by adambennett on 29/07/2016.
@@ -94,6 +100,16 @@ public class ViewUtils {
     @IntDef({VISIBLE, INVISIBLE, GONE})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Visibility {
+    }
+
+
+    /**
+     * These annotations are hidden in the Android Jar for some reason. Defining them here instead
+     * for use in ViewModel callbacks etc.
+     */
+    @IntDef({LENGTH_SHORT, LENGTH_LONG, LENGTH_INDEFINITE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface SnackbarLength {
     }
 
     /**

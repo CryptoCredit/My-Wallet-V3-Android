@@ -1,6 +1,7 @@
 package piuk.blockchain.android.injection;
 
 import android.app.Application;
+import android.app.NotificationManager;
 import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
@@ -79,5 +80,11 @@ public class ApplicationModule {
     @Provides
     protected PersistentUrls providePersistentUrls() {
         return PersistentUrls.getInstance();
+    }
+
+    @Provides
+    @Singleton
+    protected NotificationManager provideNotificationManager(Context context) {
+        return (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 }
