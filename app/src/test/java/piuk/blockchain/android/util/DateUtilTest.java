@@ -1,12 +1,10 @@
 package piuk.blockchain.android.util;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.junit.MatcherAssert.assertThat;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -30,19 +28,20 @@ public class DateUtilTest {
         Calendar now = Calendar.getInstance();
         String year = String.valueOf(now.get(Calendar.YEAR));
         // Pass in current year so that tests don't break after new year
-        assertThat(dateUtil.formatted(parseDateTime(year + "-01-01 00:00:00")), is("January 1"));
-        assertThat(dateUtil.formatted(parseDateTime("2015-12-31 23:59:59")), is("December 31, 2015"));
-        assertThat(dateUtil.formatted(parseDateTime("2015-01-01 00:00:00")), is("January 1, 2015"));
+        Assert.assertEquals("January 1", dateUtil.formatted(parseDateTime(year + "-01-01 00:00:00")));
+        Assert.assertEquals("January 1", dateUtil.formatted(parseDateTime(year + "-01-01 00:00:00")));
+        Assert.assertEquals("December 31, 2015", dateUtil.formatted(parseDateTime("2015-12-31 23:59:59")));
+        Assert.assertEquals("January 1, 2015", dateUtil.formatted(parseDateTime("2015-01-01 00:00:00")));
 
-        assertThat(dateUtil.formatted(parseDateTime(year + "-04-15 00:00:00")), is("April 15"));
-        assertThat(dateUtil.formatted(parseDateTime(year + "-04-15 12:00:00")), is("April 15"));
-        assertThat(dateUtil.formatted(parseDateTime(year + "-04-15 23:00:00")), is("April 15"));
-        assertThat(dateUtil.formatted(parseDateTime(year + "-04-15 23:59:59")), is("April 15"));
+        Assert.assertEquals("April 15", dateUtil.formatted(parseDateTime(year + "-04-15 00:00:00")));
+        Assert.assertEquals("April 15", dateUtil.formatted(parseDateTime(year + "-04-15 12:00:00")));
+        Assert.assertEquals("April 15", dateUtil.formatted(parseDateTime(year + "-04-15 23:00:00")));
+        Assert.assertEquals("April 15", dateUtil.formatted(parseDateTime(year + "-04-15 23:59:59")));
 
-        assertThat(dateUtil.formatted(parseDateTime("2015-04-15 00:00:00")), is("April 15, 2015"));
-        assertThat(dateUtil.formatted(parseDateTime("2015-04-15 12:00:00")), is("April 15, 2015"));
-        assertThat(dateUtil.formatted(parseDateTime("2015-04-15 23:00:00")), is("April 15, 2015"));
-        assertThat(dateUtil.formatted(parseDateTime("2015-04-15 23:59:59")), is("April 15, 2015"));
+        Assert.assertEquals("April 15, 2015", dateUtil.formatted(parseDateTime("2015-04-15 00:00:00")));
+        Assert.assertEquals("April 15, 2015", dateUtil.formatted(parseDateTime("2015-04-15 12:00:00")));
+        Assert.assertEquals("April 15, 2015", dateUtil.formatted(parseDateTime("2015-04-15 23:00:00")));
+        Assert.assertEquals("April 15, 2015", dateUtil.formatted(parseDateTime("2015-04-15 23:59:59")));
     }
 
     @SuppressWarnings("EmptyCatchBlock")

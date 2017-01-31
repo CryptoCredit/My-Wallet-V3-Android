@@ -1,14 +1,15 @@
 package piuk.blockchain.android.ui.pairing;
 
 import android.support.annotation.StringRes;
+import android.support.annotation.VisibleForTesting;
 import info.blockchain.wallet.api.WalletPayload;
 import info.blockchain.wallet.crypto.AESUtil;
-import info.blockchain.wallet.pairing.PairingQRComponents;
 import info.blockchain.wallet.payload.PayloadManager;
 import io.reactivex.Observable;
 import io.reactivex.exceptions.Exceptions;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
+import org.apache.commons.lang3.tuple.Pair;
 import org.spongycastle.util.encoders.Hex;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.rxjava.RxUtil;
@@ -59,8 +60,11 @@ public class PairingViewModel extends BaseViewModel {
                         .compose(RxUtil.applySchedulersToObservable())
                         .subscribe(pairingQRComponents -> {
                             dataListener.dismissProgressDialog();
-                            if (pairingQRComponents.guid != null) {
-                                prefsUtil.setValue(PrefsUtil.KEY_GUID, pairingQRComponents.guid);
+
+                            String guid = pairingQRComponents.getLeft();
+
+                            if (guid != null) {
+                                prefsUtil.setValue(PrefsUtil.KEY_GUID, guid);
                                 prefsUtil.setValue(PrefsUtil.KEY_EMAIL_VERIFIED, true);
                                 dataListener.startPinEntryActivity();
                             } else {
@@ -73,11 +77,14 @@ public class PairingViewModel extends BaseViewModel {
                         }));
     }
 
-    private Observable<PairingQRComponents> handleQrCode(String data, WalletPayload access) {
+    private Observable<Pair<String, String>> handleQrCode(String data, WalletPayload access) {
         return Observable.fromCallable(() -> {
-            PairingQRComponents qrComponents = getQRComponentsFromRawString(data);
-            String encryptionPassword = access.getPairingEncryptionPassword(qrComponents.guid);
-            String[] sharedKeyAndPassword = getSharedKeyAndPassword(qrComponents.encryptedPairingCode, encryptionPassword);
+            Pair<String, String> qrComponents = getQRComponentsFromRawString(data);
+            String guid = qrComponents.getLeft();
+            String encryptedPairingCode = qrComponents.getRight();
+
+            String encryptionPassword = access.getPairingEncryptionPassword(guid);
+            String[] sharedKeyAndPassword = getSharedKeyAndPassword(encryptedPairingCode, encryptionPassword);
 
             payloadManager.setTempPassword(new String(Hex.decode(sharedKeyAndPassword[1]), "UTF-8"));
             appUtil.setSharedKey(sharedKeyAndPassword[0]);
@@ -86,9 +93,8 @@ public class PairingViewModel extends BaseViewModel {
         });
     }
 
-    private PairingQRComponents getQRComponentsFromRawString(String rawString) throws Exception {
-
-        PairingQRComponents result = new PairingQRComponents();
+    @VisibleForTesting
+    Pair<String, String> getQRComponentsFromRawString(String rawString) throws Exception {
 
         if (rawString == null || rawString.length() == 0 || rawString.charAt(0) != '1') {
             throw new Exception("QR string null or empty.");
@@ -100,17 +106,18 @@ public class PairingViewModel extends BaseViewModel {
             throw new Exception("QR string does not have 3 components.");
         }
 
-        result.guid = components[1];
-        if (result.guid.length() != 36) {
+        String guid = components[1];
+        if (guid.length() != 36) {
             throw new Exception("GUID should be 36 characters in length.");
         }
 
-        result.encryptedPairingCode = components[2];
+        String encryptedPairingCode = components[2];
 
-        return result;
+        return Pair.of(guid,encryptedPairingCode);
     }
 
-    private String[] getSharedKeyAndPassword(String encryptedPairingCode, String encryptionPassword) throws Exception {
+    @VisibleForTesting
+    String[] getSharedKeyAndPassword(String encryptedPairingCode, String encryptionPassword) throws Exception {
 
         String decryptedPairingCode = AESUtil
             .decrypt(encryptedPairingCode, encryptionPassword, AESUtil.QR_CODE_PBKDF_2ITERATIONS);
