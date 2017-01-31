@@ -1,11 +1,20 @@
 package piuk.blockchain.android.ui.auth;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
 import android.app.Application;
-
-import info.blockchain.api.WalletPayload;
+import info.blockchain.wallet.api.WalletPayload;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
+import io.reactivex.Observable;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +23,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
-import io.reactivex.Observable;
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.RxTest;
@@ -31,17 +38,6 @@ import piuk.blockchain.android.util.AppUtil;
 import piuk.blockchain.android.util.DialogButtonCallback;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.StringUtils;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by adambennett on 10/08/2016.
@@ -102,7 +98,7 @@ public class PasswordRequiredViewModelTest extends RxTest {
             ((AuthDataManager.DecryptPayloadListener) invocation.getArguments()[3]).onSuccess();
             return null;
         }).when(mAuthDataManager).attemptDecryptPayload(
-                any(CharSequenceX.class), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
+                anyString(), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
 
         // Act
         mSubject.onContinueClicked();
@@ -127,7 +123,7 @@ public class PasswordRequiredViewModelTest extends RxTest {
             ((AuthDataManager.DecryptPayloadListener) invocation.getArguments()[3]).onPairFail();
             return null;
         }).when(mAuthDataManager).attemptDecryptPayload(
-                any(CharSequenceX.class), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
+            anyString(), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
 
         // Act
         mSubject.onContinueClicked();
@@ -154,7 +150,7 @@ public class PasswordRequiredViewModelTest extends RxTest {
             ((AuthDataManager.DecryptPayloadListener) invocation.getArguments()[3]).onPairFail();
             return null;
         }).when(mAuthDataManager).attemptDecryptPayload(
-                any(CharSequenceX.class), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
+            anyString(), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
 
         // Act
         mSubject.onContinueClicked();
@@ -181,7 +177,7 @@ public class PasswordRequiredViewModelTest extends RxTest {
             ((AuthDataManager.DecryptPayloadListener) invocation.getArguments()[3]).onAuthFail();
             return null;
         }).when(mAuthDataManager).attemptDecryptPayload(
-                any(CharSequenceX.class), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
+            anyString(), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
 
         // Act
         mSubject.onContinueClicked();
@@ -208,7 +204,7 @@ public class PasswordRequiredViewModelTest extends RxTest {
             ((AuthDataManager.DecryptPayloadListener) invocation.getArguments()[3]).onFatalError();
             return null;
         }).when(mAuthDataManager).attemptDecryptPayload(
-                any(CharSequenceX.class), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
+            anyString(), anyString(), anyString(), any(AuthDataManager.DecryptPayloadListener.class));
 
         // Act
         mSubject.onContinueClicked();

@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
-
 import io.reactivex.disposables.CompositeDisposable;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.R;

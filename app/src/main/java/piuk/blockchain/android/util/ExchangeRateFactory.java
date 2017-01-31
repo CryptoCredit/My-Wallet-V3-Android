@@ -2,21 +2,16 @@ package piuk.blockchain.android.util;
 
 
 import android.util.Log;
-
-import info.blockchain.api.ExchangeTicker;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import info.blockchain.wallet.api.ExchangeTicker;
+import io.reactivex.Observable;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Locale;
-
 import javax.inject.Inject;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.injection.Injector;
-import io.reactivex.Observable;
 
 /**
  * This class obtains info on the currencies communicated via https://blockchain.info/ticker

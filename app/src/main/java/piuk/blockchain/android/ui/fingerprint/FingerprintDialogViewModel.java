@@ -1,23 +1,19 @@
 package piuk.blockchain.android.ui.fingerprint;
 
+import static piuk.blockchain.android.ui.fingerprint.FingerprintDialog.KEY_BUNDLE_PIN_CODE;
+import static piuk.blockchain.android.ui.fingerprint.FingerprintDialog.KEY_BUNDLE_STAGE;
+
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.VisibleForTesting;
-
-import info.blockchain.wallet.util.CharSequenceX;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.ui.base.BaseViewModel;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static piuk.blockchain.android.ui.fingerprint.FingerprintDialog.KEY_BUNDLE_PIN_CODE;
-import static piuk.blockchain.android.ui.fingerprint.FingerprintDialog.KEY_BUNDLE_STAGE;
 
 @SuppressWarnings("WeakerAccess")
 public class FingerprintDialogViewModel extends BaseViewModel implements FingerprintHelper.AuthCallback {
@@ -45,7 +41,7 @@ public class FingerprintDialogViewModel extends BaseViewModel implements Fingerp
 
         void onFatalError();
 
-        void onAuthenticated(@Nullable CharSequenceX data);
+        void onAuthenticated(@Nullable String data);
 
         void onRecoverableError();
 
@@ -105,7 +101,7 @@ public class FingerprintDialogViewModel extends BaseViewModel implements Fingerp
     }
 
     @Override
-    public void onAuthenticated(@Nullable CharSequenceX data) {
+    public void onAuthenticated(@Nullable String data) {
         dataListener.setIcon(R.drawable.ic_fingerprint_success);
         dataListener.setStatusTextColor(R.color.blockchain_blue);
         dataListener.setStatusText(R.string.fingerprint_success);

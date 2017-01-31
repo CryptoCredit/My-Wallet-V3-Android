@@ -1,20 +1,18 @@
 package piuk.blockchain.android.data.datamanagers;
 
-import android.graphics.Bitmap;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.TestCase.assertEquals;
 
+import android.graphics.Bitmap;
+import io.reactivex.observers.TestObserver;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-
-import io.reactivex.observers.TestObserver;
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.RxTest;
-
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.TestCase.assertEquals;
 
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)
 @RunWith(RobolectricTestRunner.class)

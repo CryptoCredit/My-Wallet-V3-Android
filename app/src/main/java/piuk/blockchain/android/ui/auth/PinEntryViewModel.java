@@ -1,5 +1,10 @@
 package piuk.blockchain.android.ui.auth;
 
+import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_EMAIL;
+import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_PASSWORD;
+import static piuk.blockchain.android.ui.auth.LandingActivity.KEY_INTENT_RECOVERING_FUNDS;
+import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATING_PIN_FOR_RESULT;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +14,6 @@ import android.support.annotation.UiThread;
 import android.support.annotation.VisibleForTesting;
 import android.view.View;
 import android.widget.ImageView;
-
 import info.blockchain.wallet.exceptions.AccountLockedException;
 import info.blockchain.wallet.exceptions.DecryptionException;
 import info.blockchain.wallet.exceptions.HDWalletException;
@@ -18,16 +22,11 @@ import info.blockchain.wallet.exceptions.PayloadException;
 import info.blockchain.wallet.exceptions.ServerConnectionException;
 import info.blockchain.wallet.exceptions.UnsupportedVersionException;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
-import org.spongycastle.crypto.InvalidCipherTextException;
-
+import io.reactivex.exceptions.Exceptions;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.exceptions.Exceptions;
+import org.spongycastle.crypto.InvalidCipherTextException;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.datamanagers.AuthDataManager;
@@ -42,11 +41,6 @@ import piuk.blockchain.android.util.SSLVerifyUtil;
 import piuk.blockchain.android.util.StringUtils;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_EMAIL;
-import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_PASSWORD;
-import static piuk.blockchain.android.ui.auth.LandingActivity.KEY_INTENT_RECOVERING_FUNDS;
-import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATING_PIN_FOR_RESULT;
 
 @SuppressWarnings("WeakerAccess")
 public class PinEntryViewModel extends BaseViewModel {
@@ -65,7 +59,7 @@ public class PinEntryViewModel extends BaseViewModel {
     @Inject protected AccessState mAccessState;
 
     private String mEmail;
-    private CharSequenceX mPassword;
+    private String mPassword;
     @VisibleForTesting boolean mRecoveringFunds = false;
     @VisibleForTesting boolean mCanShowFingerprintDialog = true;
     @VisibleForTesting boolean mValidatingPinForResult = false;
@@ -107,7 +101,7 @@ public class PinEntryViewModel extends BaseViewModel {
 
         void finishWithResultOk(String pin);
 
-        void showFingerprintDialog(CharSequenceX pincode);
+        void showFingerprintDialog(String pincode);
 
         void showKeyboard();
 
@@ -134,7 +128,7 @@ public class PinEntryViewModel extends BaseViewModel {
 
                 if (extras.containsKey(KEY_INTENT_PASSWORD)) {
                     //noinspection ConstantConditions
-                    mPassword = new CharSequenceX(extras.getString(KEY_INTENT_PASSWORD));
+                    mPassword = extras.getString(KEY_INTENT_PASSWORD);
                 }
 
                 if (extras.containsKey(KEY_INTENT_RECOVERING_FUNDS)) {
@@ -182,12 +176,12 @@ public class PinEntryViewModel extends BaseViewModel {
                 && mFingerprintHelper.getEncryptedData(PrefsUtil.KEY_ENCRYPTED_PIN_CODE) != null;
     }
 
-    public void loginWithDecryptedPin(CharSequenceX pincode) {
+    public void loginWithDecryptedPin(String pincode) {
         mCanShowFingerprintDialog = false;
         for (ImageView view : mDataListener.getPinBoxArray()) {
             view.setImageResource(R.drawable.rounded_view_dark_blue);
         }
-        validatePIN(pincode.toString());
+        validatePIN(pincode);
     }
 
     public void onDeleteClicked() {
@@ -284,7 +278,7 @@ public class PinEntryViewModel extends BaseViewModel {
     }
 
     @VisibleForTesting
-    void updatePayload(CharSequenceX password) {
+    void updatePayload(String password) {
         mDataListener.showProgressDialog(R.string.decrypting_wallet, null);
 
         compositeDisposable.add(
@@ -353,7 +347,7 @@ public class PinEntryViewModel extends BaseViewModel {
         return mValidatingPinForResult;
     }
 
-    public void validatePassword(CharSequenceX password) {
+    public void validatePassword(String password) {
         mDataListener.showProgressDialog(R.string.validating_password, null);
 
         compositeDisposable.add(
@@ -361,7 +355,7 @@ public class PinEntryViewModel extends BaseViewModel {
                         mPrefsUtil.getValue(PrefsUtil.KEY_SHARED_KEY, ""),
                         mPrefsUtil.getValue(PrefsUtil.KEY_GUID, ""),
                         password)
-                        .doOnSubscribe(disposable -> mPayloadManager.setTempPassword(new CharSequenceX("")))
+                        .doOnSubscribe(disposable -> mPayloadManager.setTempPassword(""))
                         .doAfterTerminate(() -> mDataListener.dismissProgressDialog())
                         .subscribe(() -> {
                             mDataListener.showToast(R.string.pin_4_strikes_password_accepted, ToastCustom.TYPE_OK);

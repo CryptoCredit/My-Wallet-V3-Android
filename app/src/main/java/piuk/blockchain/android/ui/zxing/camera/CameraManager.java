@@ -16,8 +16,6 @@
 
 package piuk.blockchain.android.ui.zxing.camera;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -28,9 +26,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
-
 import com.google.zxing.PlanarYUVLuminanceSource;
-
+import java.io.IOException;
 import piuk.blockchain.android.ui.zxing.CaptureActivity;
 import piuk.blockchain.android.ui.zxing.camera.open.OpenCameraManager;
 

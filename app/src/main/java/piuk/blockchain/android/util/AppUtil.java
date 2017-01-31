@@ -7,14 +7,10 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import java.io.File;
 import java.security.Security;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.injection.Injector;

@@ -26,12 +26,10 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 import piuk.blockchain.android.ui.zxing.PreferencesActivity;
 
 /**

@@ -1,20 +1,18 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.PinStore;
-import info.blockchain.wallet.exceptions.InvalidCredentialsException;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
 
+import info.blockchain.wallet.api.PinStore;
+import info.blockchain.wallet.exceptions.InvalidCredentialsException;
+import io.reactivex.observers.TestObserver;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import io.reactivex.observers.TestObserver;
 import piuk.blockchain.android.RxTest;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.when;
 
 public class PinStoreServiceTest extends RxTest {
 

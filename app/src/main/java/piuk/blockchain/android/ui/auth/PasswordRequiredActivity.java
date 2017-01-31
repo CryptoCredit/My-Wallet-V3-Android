@@ -8,7 +8,6 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityPasswordRequiredBinding;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;

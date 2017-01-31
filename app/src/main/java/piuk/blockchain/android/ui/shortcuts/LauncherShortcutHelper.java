@@ -8,13 +8,9 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
-import org.bitcoinj.core.AddressFormatException;
-
 import java.util.Arrays;
-
+import org.bitcoinj.core.AddressFormatException;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.receive.ReceiveQrActivity;
 

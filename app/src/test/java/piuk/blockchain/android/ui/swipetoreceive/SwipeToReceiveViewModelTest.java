@@ -1,11 +1,20 @@
 package piuk.blockchain.android.ui.swipetoreceive;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import android.app.Application;
 import android.graphics.Bitmap;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.PayloadManager;
-
+import io.reactivex.Observable;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,12 +23,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import io.reactivex.Observable;
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.data.datamanagers.QrCodeDataManager;
@@ -29,13 +32,6 @@ import piuk.blockchain.android.injection.DataManagerModule;
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.injection.InjectorTestUtils;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)
 @RunWith(RobolectricTestRunner.class)

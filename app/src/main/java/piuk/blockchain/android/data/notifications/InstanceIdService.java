@@ -1,12 +1,9 @@
 package piuk.blockchain.android.data.notifications;
 
+import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
-
-import android.util.Log;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.injection.Injector;
 
 public class InstanceIdService extends FirebaseInstanceIdService {

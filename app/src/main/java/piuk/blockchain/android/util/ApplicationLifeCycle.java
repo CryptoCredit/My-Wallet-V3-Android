@@ -2,7 +2,6 @@ package piuk.blockchain.android.util;
 
 import android.os.Handler;
 import android.util.Log;
-
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 

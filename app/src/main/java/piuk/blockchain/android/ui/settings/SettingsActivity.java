@@ -3,7 +3,6 @@ package piuk.blockchain.android.ui.settings;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;
 

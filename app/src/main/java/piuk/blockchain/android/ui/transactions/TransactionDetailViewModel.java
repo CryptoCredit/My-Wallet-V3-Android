@@ -1,18 +1,18 @@
 package piuk.blockchain.android.ui.transactions;
 
+import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_HASH;
+import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_LIST_POSITION;
+
 import android.content.Intent;
 import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.util.Pair;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.transaction.Transaction;
 import info.blockchain.wallet.transaction.Tx;
-
-import org.apache.commons.lang3.StringUtils;
-
+import io.reactivex.Observable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,10 +23,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
+import org.apache.commons.lang3.StringUtils;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.TransactionListDataManager;
 import piuk.blockchain.android.injection.Injector;
@@ -35,9 +33,6 @@ import piuk.blockchain.android.ui.customviews.ToastCustom;
 import piuk.blockchain.android.util.ExchangeRateFactory;
 import piuk.blockchain.android.util.MonetaryUtil;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_HASH;
-import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_LIST_POSITION;
 
 @SuppressWarnings("WeakerAccess")
 public class TransactionDetailViewModel extends BaseViewModel {

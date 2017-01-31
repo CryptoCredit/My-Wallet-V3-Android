@@ -1,17 +1,22 @@
 package piuk.blockchain.android.ui.fingerprint;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import android.content.Context;
 import android.os.Build;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.support.annotation.RequiresApi;
-
 import com.mtramin.rxfingerprint.data.FingerprintAuthenticationResult;
 import com.mtramin.rxfingerprint.data.FingerprintDecryptionResult;
 import com.mtramin.rxfingerprint.data.FingerprintEncryptionResult;
 import com.mtramin.rxfingerprint.data.FingerprintResult;
-
-import info.blockchain.wallet.util.CharSequenceX;
-
+import io.reactivex.Observable;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,21 +24,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-
-import io.reactivex.Observable;
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.data.fingerprint.FingerprintAuth;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)
 @RunWith(RobolectricTestRunner.class)
@@ -118,7 +112,7 @@ public class FingerprintHelperTest {
         // Arrange
 
         // Act
-        boolean result = subject.storeEncryptedData("key", new CharSequenceX("data"));
+        boolean result = subject.storeEncryptedData("key", "data");
         // Assert
         verify(prefsUtil).setValue("key", "ZGF0YQ==\n");
         assertTrue(result);
@@ -129,11 +123,11 @@ public class FingerprintHelperTest {
         // Arrange
         when(prefsUtil.getValue("key", "")).thenReturn("ZGF0YQ==\n");
         // Act
-        CharSequenceX result = subject.getEncryptedData("key");
+        String result = subject.getEncryptedData("key");
         // Assert
         verify(prefsUtil).getValue("key", "");
         assert result != null;
-        assertEquals("data", result.toString());
+        assertEquals("data", result);
     }
 
     @Test
@@ -228,7 +222,7 @@ public class FingerprintHelperTest {
         // Act
         subject.encryptString("", "", mockAuthCallback);
         // Assert
-        verify(mockAuthCallback).onAuthenticated(any(CharSequenceX.class));
+        verify(mockAuthCallback).onAuthenticated(anyString());
     }
 
     @Test
@@ -276,7 +270,7 @@ public class FingerprintHelperTest {
         // Act
         subject.decryptString("", "", mockAuthCallback);
         // Assert
-        verify(mockAuthCallback).onAuthenticated(any(CharSequenceX.class));
+        verify(mockAuthCallback).onAuthenticated(anyString());
     }
 
     @Test

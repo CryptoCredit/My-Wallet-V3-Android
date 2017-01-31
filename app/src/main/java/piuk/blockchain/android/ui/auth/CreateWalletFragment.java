@@ -19,10 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
-
 import info.blockchain.wallet.util.FormatsUtil;
 import info.blockchain.wallet.util.PasswordUtil;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.FragmentCreateWalletBinding;
 import piuk.blockchain.android.ui.customviews.ToastCustom;

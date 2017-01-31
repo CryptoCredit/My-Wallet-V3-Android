@@ -3,7 +3,6 @@ package piuk.blockchain.android.data.datamanagers;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.LegacyAddress;
@@ -11,14 +10,12 @@ import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.transaction.Transaction;
 import info.blockchain.wallet.transaction.Tx;
 import info.blockchain.wallet.transaction.TxMostRecentDateComparator;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.data.services.TransactionDetailsService;
 import piuk.blockchain.android.data.stores.TransactionListStore;

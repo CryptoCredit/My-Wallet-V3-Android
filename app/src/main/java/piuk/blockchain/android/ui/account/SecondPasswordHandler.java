@@ -5,9 +5,7 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputType;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import io.reactivex.Observable;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.rxjava.RxUtil;

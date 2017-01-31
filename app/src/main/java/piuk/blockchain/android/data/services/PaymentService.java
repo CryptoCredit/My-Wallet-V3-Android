@@ -2,14 +2,11 @@ package piuk.blockchain.android.data.services;
 
 import info.blockchain.wallet.payment.Payment;
 import info.blockchain.wallet.payment.data.SpendableUnspentOutputs;
-
-import org.bitcoinj.core.ECKey;
-
-import java.math.BigInteger;
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
+import java.math.BigInteger;
+import java.util.List;
+import org.bitcoinj.core.ECKey;
 
 public class PaymentService {
 

@@ -1,6 +1,17 @@
 package piuk.blockchain.android.data.datamanagers;
 
-import info.blockchain.api.Unspent;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyListOf;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import info.blockchain.wallet.api.Unspent;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.HDWallet;
@@ -12,8 +23,10 @@ import info.blockchain.wallet.payment.data.SpendableUnspentOutputs;
 import info.blockchain.wallet.payment.data.SuggestedFee;
 import info.blockchain.wallet.payment.data.SweepBundle;
 import info.blockchain.wallet.payment.data.UnspentOutputs;
-import info.blockchain.wallet.util.CharSequenceX;
-
+import io.reactivex.observers.TestObserver;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang3.tuple.Triple;
 import org.bitcoinj.core.ECKey;
 import org.json.JSONObject;
@@ -23,27 +36,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.observers.TestObserver;
 import piuk.blockchain.android.RxTest;
 import piuk.blockchain.android.data.cache.DynamicFeeCache;
 import piuk.blockchain.android.ui.account.ItemAccount;
 import piuk.blockchain.android.ui.send.PendingTransaction;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyListOf;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class TransferFundsDataManagerTest extends RxTest {
 
@@ -136,7 +132,7 @@ public class TransferFundsDataManagerTest extends RxTest {
         when(payloadManager.getPayload()).thenReturn(mockPayload);
 
         // Act
-        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, new CharSequenceX("password")).test();
+        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, "password").test();
         // Assert
         assertEquals("hash", observer.values().get(0));
         observer.assertComplete();
@@ -178,7 +174,7 @@ public class TransferFundsDataManagerTest extends RxTest {
         when(payloadManager.getPayload()).thenReturn(mockPayload);
 
         // Act
-        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, new CharSequenceX("password")).test();
+        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, "password").test();
         // Assert
         observer.assertError(Throwable.class);
         observer.assertNotComplete();
@@ -217,7 +213,7 @@ public class TransferFundsDataManagerTest extends RxTest {
         when(payloadManager.getPayload()).thenReturn(mockPayload);
 
         // Act
-        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, new CharSequenceX("password")).test();
+        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, "password").test();
         // Assert
         observer.assertError(Throwable.class);
         observer.assertNotComplete();
@@ -251,7 +247,7 @@ public class TransferFundsDataManagerTest extends RxTest {
         when(payloadManager.savePayloadToServer()).thenReturn(true);
 
         // Act
-        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, new CharSequenceX("password")).test();
+        TestObserver<String> observer = subject.sendPayment(mockPayment, pendingTransactions, "password").test();
         // Assert
         observer.assertError(Throwable.class);
         observer.assertNotComplete();

@@ -1,29 +1,38 @@
 package piuk.blockchain.android.ui.transactions;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_LIST_POSITION;
+
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Intent;
 import android.support.v4.util.Pair;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.transaction.Transaction;
 import info.blockchain.wallet.transaction.Tx;
-
+import io.reactivex.Observable;
+import io.reactivex.observers.TestObserver;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RuntimeEnvironment;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-
-import io.reactivex.Observable;
-import io.reactivex.observers.TestObserver;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.RxTest;
 import piuk.blockchain.android.data.datamanagers.TransactionListDataManager;
@@ -38,19 +47,6 @@ import piuk.blockchain.android.util.ExchangeRateFactory;
 import piuk.blockchain.android.util.MonetaryUtil;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.StringUtils;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_LIST_POSITION;
 
 @SuppressLint("UseSparseArrays")
 @SuppressWarnings("PrivateMemberAccessBetweenOuterAndInnerClass")

@@ -1,16 +1,13 @@
 package piuk.blockchain.android.ui.receive;
 
 import android.support.annotation.NonNull;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.AddressBookEntry;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.PayloadManager;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.account.ItemAccount;
 import piuk.blockchain.android.util.ExchangeRateFactory;

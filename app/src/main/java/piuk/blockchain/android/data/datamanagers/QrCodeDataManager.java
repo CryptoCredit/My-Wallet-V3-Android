@@ -1,10 +1,8 @@
 package piuk.blockchain.android.data.datamanagers;
 
+import android.graphics.Bitmap;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
-
-import android.graphics.Bitmap;
-
 import io.reactivex.Observable;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.ui.zxing.Contents;

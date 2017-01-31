@@ -5,16 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.util.Log;
-
 import info.blockchain.wallet.contacts.data.Contact;
 import info.blockchain.wallet.exceptions.DecryptionException;
 import info.blockchain.wallet.payload.PayloadManager;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.ContactsDataManager;
 import piuk.blockchain.android.data.datamanagers.QrCodeDataManager;

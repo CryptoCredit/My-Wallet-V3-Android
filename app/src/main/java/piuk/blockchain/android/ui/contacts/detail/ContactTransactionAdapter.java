@@ -1,5 +1,8 @@
 package piuk.blockchain.android.ui.contacts.detail;
 
+import static piuk.blockchain.android.ui.balance.BalanceFragment.SHOW_BTC;
+import static piuk.blockchain.android.ui.send.SendViewModel.SHOW_FIAT;
+
 import android.support.v4.content.ContextCompat;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
@@ -10,19 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import info.blockchain.wallet.contacts.data.FacilitatedTransaction;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.util.MonetaryUtil;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.StringUtils;
-
-import static piuk.blockchain.android.ui.balance.BalanceFragment.SHOW_BTC;
-import static piuk.blockchain.android.ui.send.SendViewModel.SHOW_FIAT;
 
 class ContactTransactionAdapter extends RecyclerView.Adapter<ContactTransactionAdapter.TransactionViewHolder> {
 

@@ -2,9 +2,7 @@ package piuk.blockchain.android.util;
 
 import android.util.Log;
 import android.util.Pair;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;

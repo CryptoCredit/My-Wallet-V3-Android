@@ -1,18 +1,16 @@
 package piuk.blockchain.android.injection;
 
 import android.content.Context;
-
-import info.blockchain.api.AddressInfo;
-import info.blockchain.api.Settings;
-import info.blockchain.api.TransactionDetails;
-import info.blockchain.api.Unspent;
-import info.blockchain.api.WalletPayload;
+import dagger.Module;
+import dagger.Provides;
+import info.blockchain.wallet.api.AddressInfo;
+import info.blockchain.wallet.api.Settings;
+import info.blockchain.wallet.api.TransactionDetails;
+import info.blockchain.wallet.api.Unspent;
+import info.blockchain.wallet.api.WalletPayload;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.payment.Payment;
-
-import dagger.Module;
-import dagger.Provides;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.datamanagers.AccountDataManager;
 import piuk.blockchain.android.data.datamanagers.AccountEditDataManager;

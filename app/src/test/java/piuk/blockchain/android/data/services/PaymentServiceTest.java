@@ -1,20 +1,5 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.wallet.payment.Payment;
-import info.blockchain.wallet.payment.data.SpendableUnspentOutputs;
-
-import org.bitcoinj.core.ECKey;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.math.BigInteger;
-import java.util.List;
-
-import io.reactivex.observers.TestObserver;
-import piuk.blockchain.android.RxTest;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyListOf;
@@ -22,6 +7,18 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+
+import info.blockchain.wallet.payment.Payment;
+import info.blockchain.wallet.payment.data.SpendableUnspentOutputs;
+import io.reactivex.observers.TestObserver;
+import java.math.BigInteger;
+import java.util.List;
+import org.bitcoinj.core.ECKey;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import piuk.blockchain.android.RxTest;
 
 public class PaymentServiceTest extends RxTest {
 

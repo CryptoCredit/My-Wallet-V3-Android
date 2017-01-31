@@ -8,7 +8,6 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityContactsInvitationBuilderBinding;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;

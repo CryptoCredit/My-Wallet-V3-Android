@@ -1,13 +1,11 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.Notifications;
-
+import info.blockchain.wallet.api.Notifications;
+import io.reactivex.observers.TestObserver;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import io.reactivex.observers.TestObserver;
 import piuk.blockchain.android.RxTest;
 
 public class NotificationServiceTest extends RxTest {

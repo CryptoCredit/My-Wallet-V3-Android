@@ -2,13 +2,10 @@ package piuk.blockchain.android.ui.contacts.payments;
 
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.PayloadManager;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.ui.base.BaseViewModel;
 import piuk.blockchain.android.ui.receive.ReceiveCurrencyHelper;

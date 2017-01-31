@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
-
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.R;
 

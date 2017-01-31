@@ -19,12 +19,11 @@ package piuk.blockchain.android.ui.zxing;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Handles any locale-specific logic for the client.

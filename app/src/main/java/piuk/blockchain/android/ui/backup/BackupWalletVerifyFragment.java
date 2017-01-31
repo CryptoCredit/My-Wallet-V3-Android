@@ -13,11 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.payload.PayloadBridge;
 import piuk.blockchain.android.databinding.FragmentBackupWalletVerifyBinding;

@@ -16,9 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;

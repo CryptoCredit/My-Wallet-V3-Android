@@ -2,19 +2,15 @@ package piuk.blockchain.android.ui.swipetoreceive;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.PayloadManager;
-
-import org.bitcoinj.core.AddressFormatException;
-
+import io.reactivex.Observable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import io.reactivex.Observable;
+import org.bitcoinj.core.AddressFormatException;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.util.PrefsUtil;
 

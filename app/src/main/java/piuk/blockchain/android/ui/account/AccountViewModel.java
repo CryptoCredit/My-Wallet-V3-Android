@@ -4,22 +4,17 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.VisibleForTesting;
-
-import info.blockchain.api.PersistentUrls;
+import info.blockchain.wallet.api.PersistentUrls;
 import info.blockchain.wallet.exceptions.DecryptionException;
 import info.blockchain.wallet.exceptions.PayloadException;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
 import info.blockchain.wallet.util.FormatsUtil;
 import info.blockchain.wallet.util.PrivateKeyFactory;
-
+import io.reactivex.exceptions.Exceptions;
+import javax.inject.Inject;
 import org.bitcoinj.core.ECKey;
 import org.bitcoinj.crypto.BIP38PrivateKey;
-
-import javax.inject.Inject;
-
-import io.reactivex.exceptions.Exceptions;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.AccountDataManager;
@@ -46,7 +41,7 @@ public class AccountViewModel extends BaseViewModel {
     @Inject PrefsUtil prefsUtil;
     @Inject AppUtil appUtil;
     @Inject PrivateKeyFactory privateKeyFactory;
-    @VisibleForTesting CharSequenceX doubleEncryptionPassword;
+    @VisibleForTesting String doubleEncryptionPassword;
 
     AccountViewModel(DataListener dataListener) {
         Injector.getInstance().getDataManagerComponent().inject(this);
@@ -83,7 +78,7 @@ public class AccountViewModel extends BaseViewModel {
         // No-op
     }
 
-    void setDoubleEncryptionPassword(CharSequenceX secondPassword) {
+    void setDoubleEncryptionPassword(String secondPassword) {
         doubleEncryptionPassword = secondPassword;
     }
 
@@ -181,11 +176,11 @@ public class AccountViewModel extends BaseViewModel {
      * @param data     The address to be imported
      * @param password The BIP38 encryption passphrase
      */
-    void importBip38Address(String data, CharSequenceX password) {
+    void importBip38Address(String data, String password) {
         dataListener.showProgressDialog(R.string.please_wait);
         try {
             BIP38PrivateKey bip38 = new BIP38PrivateKey(PersistentUrls.getInstance().getCurrentNetworkParams(), data);
-            ECKey key = bip38.decrypt(password.toString());
+            ECKey key = bip38.decrypt(password);
 
             handlePrivateKey(key, doubleEncryptionPassword);
         } catch (Exception e) {
@@ -262,7 +257,7 @@ public class AccountViewModel extends BaseViewModel {
         return address;
     }
 
-    private void importNonBip38Address(String format, String data, @Nullable CharSequenceX secondPassword) {
+    private void importNonBip38Address(String format, String data, @Nullable String secondPassword) {
         dataListener.showProgressDialog(R.string.please_wait);
 
         compositeDisposable.add(
@@ -276,7 +271,7 @@ public class AccountViewModel extends BaseViewModel {
     }
 
     @VisibleForTesting
-    void handlePrivateKey(ECKey key, @Nullable CharSequenceX secondPassword) {
+    void handlePrivateKey(ECKey key, @Nullable String secondPassword) {
         if (key != null && key.hasPrivKey()
                 && payloadManager.getPayload().getLegacyAddressStringList().contains(key.toAddress(PersistentUrls.getInstance().getCurrentNetworkParams()).toString())) {
 
@@ -307,7 +302,7 @@ public class AccountViewModel extends BaseViewModel {
         }
     }
 
-    private void setPrivateECKey(ECKey key, @Nullable CharSequenceX secondPassword) {
+    private void setPrivateECKey(ECKey key, @Nullable String secondPassword) {
         compositeDisposable.add(
                 accountDataManager.setPrivateKey(key, secondPassword)
                         .subscribe(success -> {

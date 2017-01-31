@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityContactsAcceptInviteBinding;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;

@@ -1,7 +1,6 @@
 package piuk.blockchain.android.ui.send;
 
 import android.databinding.BaseObservable;
-
 import piuk.blockchain.android.ui.account.ItemAccount;
 import piuk.blockchain.android.ui.base.ViewModel;
 

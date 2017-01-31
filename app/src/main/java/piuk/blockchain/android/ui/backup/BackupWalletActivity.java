@@ -3,9 +3,7 @@ package piuk.blockchain.android.ui.backup;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;
 

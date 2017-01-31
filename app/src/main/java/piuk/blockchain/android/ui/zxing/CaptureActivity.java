@@ -16,16 +16,7 @@
 
 package piuk.blockchain.android.ui.zxing;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.Result;
-import com.google.zxing.ResultPoint;
-import piuk.blockchain.android.ui.zxing.camera.CameraManager;
-
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -34,7 +25,8 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -47,13 +39,16 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.Result;
+import com.google.zxing.ResultPoint;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
-
-import piuk.blockchain.android.ui.base.BaseAuthActivity;
 import piuk.blockchain.android.R;
+import piuk.blockchain.android.ui.base.BaseAuthActivity;
+import piuk.blockchain.android.ui.zxing.camera.CameraManager;
 
 /**
  * This activity opens the camera and does the actual scanning on a background thread. It draws a viewfinder to help the

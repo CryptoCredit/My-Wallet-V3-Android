@@ -4,29 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import com.neovisionaries.ws.client.WebSocketFrame;
-
-import info.blockchain.api.PersistentUrls;
+import info.blockchain.wallet.api.PersistentUrls;
 import info.blockchain.wallet.payload.PayloadManager;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.rxjava.IgnorableDefaultObserver;
 import piuk.blockchain.android.data.rxjava.RxUtil;

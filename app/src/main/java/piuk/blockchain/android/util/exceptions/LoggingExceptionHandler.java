@@ -1,7 +1,6 @@
 package piuk.blockchain.android.util.exceptions;
 
 import javax.inject.Inject;
-
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.util.AppUtil;
 

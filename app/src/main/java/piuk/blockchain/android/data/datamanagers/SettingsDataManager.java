@@ -1,7 +1,6 @@
 package piuk.blockchain.android.data.datamanagers;
 
-import info.blockchain.api.Settings;
-
+import info.blockchain.wallet.api.Settings;
 import io.reactivex.Observable;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.data.services.SettingsService;

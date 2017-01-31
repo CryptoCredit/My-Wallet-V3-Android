@@ -19,9 +19,7 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.connectivity.ConnectivityStatus;
 import piuk.blockchain.android.data.websocket.WebSocketService;

@@ -1,5 +1,8 @@
 package piuk.blockchain.android.ui.home;
 
+import static piuk.blockchain.android.ui.contacts.list.ContactsListActivity.EXTRA_METADATA_URI;
+import static piuk.blockchain.android.ui.settings.SettingsFragment.EXTRA_SHOW_ADD_EMAIL_DIALOG;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -27,14 +30,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import java.util.Arrays;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.databinding.ActivityMainBinding;
@@ -61,9 +60,6 @@ import piuk.blockchain.android.util.PermissionUtil;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static piuk.blockchain.android.ui.contacts.list.ContactsListActivity.EXTRA_METADATA_URI;
-import static piuk.blockchain.android.ui.settings.SettingsFragment.EXTRA_SHOW_ADD_EMAIL_DIALOG;
 
 public class MainActivity extends BaseAuthActivity implements BalanceFragment.Communicator,
         MainViewModel.DataListener,

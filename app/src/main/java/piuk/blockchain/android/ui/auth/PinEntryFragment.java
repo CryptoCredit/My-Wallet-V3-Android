@@ -1,6 +1,9 @@
 package piuk.blockchain.android.ui.auth;
 
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -18,9 +21,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-
-import info.blockchain.wallet.util.CharSequenceX;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.connectivity.ConnectivityStatus;
@@ -33,9 +33,6 @@ import piuk.blockchain.android.ui.upgrade.UpgradeWalletActivity;
 import piuk.blockchain.android.util.DialogButtonCallback;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 
 @SuppressWarnings("WeakerAccess")
 public class PinEntryFragment extends Fragment implements PinEntryViewModel.DataListener  {
@@ -132,7 +129,7 @@ public class PinEntryFragment extends Fragment implements PinEntryViewModel.Data
     }
 
     @Override
-    public void showFingerprintDialog(CharSequenceX pincode) {
+    public void showFingerprintDialog(String pincode) {
         // Show icon for relaunching dialog
         binding.fingerprintLogo.setVisibility(View.VISIBLE);
         binding.fingerprintLogo.setOnClickListener(v -> viewModel.checkFingerprintStatus());
@@ -141,7 +138,7 @@ public class PinEntryFragment extends Fragment implements PinEntryViewModel.Data
             fingerprintDialog = FingerprintDialog.newInstance(pincode, FingerprintDialog.Stage.AUTHENTICATE);
             fingerprintDialog.setAuthCallback(new FingerprintDialog.FingerprintAuthCallback() {
                 @Override
-                public void onAuthenticated(CharSequenceX data) {
+                public void onAuthenticated(String data) {
                     dismissFingerprintDialog();
                     viewModel.loginWithDecryptedPin(data);
                 }
@@ -310,7 +307,7 @@ public class PinEntryFragment extends Fragment implements PinEntryViewModel.Data
                     final String pw = password.getText().toString();
 
                     if (pw.length() > 0) {
-                        viewModel.validatePassword(new CharSequenceX(pw));
+                        viewModel.validatePassword(pw);
                     } else {
                         viewModel.incrementFailureCountAndRestart();
                     }

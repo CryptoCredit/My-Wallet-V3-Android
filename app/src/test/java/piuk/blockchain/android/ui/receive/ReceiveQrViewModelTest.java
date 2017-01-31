@@ -1,8 +1,15 @@
 package piuk.blockchain.android.ui.receive;
 
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
-
+import io.reactivex.Observable;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +18,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.data.datamanagers.QrCodeDataManager;
@@ -21,14 +27,6 @@ import piuk.blockchain.android.injection.DataManagerModule;
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.injection.InjectorTestUtils;
 import piuk.blockchain.android.ui.customviews.ToastCustom;
-import io.reactivex.Observable;
-
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 @SuppressWarnings("PrivateMemberAccessBetweenOuterAndInnerClass")
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)

@@ -2,8 +2,7 @@ package piuk.blockchain.android.data.datamanagers;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import info.blockchain.api.Unspent;
+import info.blockchain.wallet.api.Unspent;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.PayloadManager;
@@ -11,17 +10,13 @@ import info.blockchain.wallet.payment.Payment;
 import info.blockchain.wallet.payment.data.SweepBundle;
 import info.blockchain.wallet.payment.data.UnspentOutputs;
 import info.blockchain.wallet.send.SendCoins;
-import info.blockchain.wallet.util.CharSequenceX;
-
-import org.apache.commons.lang3.tuple.Triple;
-import org.bitcoinj.core.ECKey;
-import org.json.JSONObject;
-
+import io.reactivex.Observable;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Observable;
+import org.apache.commons.lang3.tuple.Triple;
+import org.bitcoinj.core.ECKey;
+import org.json.JSONObject;
 import piuk.blockchain.android.data.cache.DynamicFeeCache;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.ui.account.ItemAccount;
@@ -113,12 +108,12 @@ public class TransferFundsDataManager {
      */
     public Observable<String> sendPayment(@NonNull Payment payment,
                                           @NonNull List<PendingTransaction> pendingTransactions,
-                                          @Nullable CharSequenceX secondPassword) {
+                                          @Nullable String secondPassword) {
         return getPaymentObservable(payment, pendingTransactions, secondPassword)
                 .compose(RxUtil.applySchedulersToObservable());
     }
 
-    private Observable<String> getPaymentObservable(Payment payment, List<PendingTransaction> pendingTransactions, CharSequenceX secondPassword) {
+    private Observable<String> getPaymentObservable(Payment payment, List<PendingTransaction> pendingTransactions, String secondPassword) {
         return Observable.create(subscriber -> {
             for (int i = 0; i < pendingTransactions.size(); i++) {
                 PendingTransaction pendingTransaction = pendingTransactions.get(i);

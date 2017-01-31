@@ -1,18 +1,16 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.WalletPayload;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
 
+import info.blockchain.wallet.api.WalletPayload;
+import io.reactivex.observers.TestObserver;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import io.reactivex.observers.TestObserver;
 import piuk.blockchain.android.RxTest;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.when;
 
 public class WalletPayloadServiceTest extends RxTest {
 

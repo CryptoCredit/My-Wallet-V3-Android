@@ -2,11 +2,8 @@ package piuk.blockchain.android.ui.contacts.pairing;
 
 import android.content.Intent;
 import android.support.annotation.StringRes;
-
 import info.blockchain.wallet.contacts.data.Contact;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.ContactsDataManager;
 import piuk.blockchain.android.injection.Injector;

@@ -1,9 +1,8 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.Unspent;
+import info.blockchain.wallet.api.Unspent;
 import info.blockchain.wallet.payment.Payment;
 import info.blockchain.wallet.payment.data.UnspentOutputs;
-
 import io.reactivex.Observable;
 import io.reactivex.exceptions.Exceptions;
 

@@ -2,9 +2,7 @@ package piuk.blockchain.android.ui.contacts.detail;
 
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
-
 import info.blockchain.wallet.contacts.data.FacilitatedTransaction;
-
 import java.util.List;
 
 public class ContactTransactionDiffUtil extends DiffUtil.Callback {

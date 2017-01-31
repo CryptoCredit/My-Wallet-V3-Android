@@ -1,19 +1,15 @@
 package piuk.blockchain.android.injection;
 
 import android.content.Context;
-
-import info.blockchain.api.Notifications;
-import info.blockchain.api.PersistentUrls;
-import info.blockchain.wallet.contacts.Contacts;
-import info.blockchain.wallet.payload.PayloadManager;
-
-import java.util.concurrent.TimeUnit;
-
-import javax.inject.Named;
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import info.blockchain.wallet.api.Notifications;
+import info.blockchain.wallet.api.PersistentUrls;
+import info.blockchain.wallet.contacts.Contacts;
+import info.blockchain.wallet.payload.PayloadManager;
+import java.util.concurrent.TimeUnit;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import okhttp3.OkHttpClient;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.api.ApiInterceptor;

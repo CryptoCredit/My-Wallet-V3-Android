@@ -5,12 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
 import android.support.annotation.VisibleForTesting;
-
-import info.blockchain.api.WalletPayload;
-import info.blockchain.wallet.util.CharSequenceX;
-
+import info.blockchain.wallet.api.WalletPayload;
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.AuthDataManager;
 import piuk.blockchain.android.injection.Injector;
@@ -67,11 +63,11 @@ public class ManualPairingViewModel extends BaseViewModel {
         } else if (password == null || password.isEmpty()) {
             showErrorToast(R.string.invalid_password);
         } else {
-            verifyPassword(new CharSequenceX(password), guid);
+            verifyPassword(password, guid);
         }
     }
 
-    private void verifyPassword(CharSequenceX password, String guid) {
+    private void verifyPassword(String password, String guid) {
         mDataListener.showProgressDialog(R.string.validating_password, null, false);
 
         mWaitingForAuth = true;
@@ -87,7 +83,8 @@ public class ManualPairingViewModel extends BaseViewModel {
                                         mAuthDataManager.startPollingAuthStatus(guid).subscribe(payloadResponse -> {
                                             mWaitingForAuth = false;
 
-                                            if (payloadResponse == null || payloadResponse.equals(WalletPayload.KEY_AUTH_REQUIRED)) {
+                                            if (payloadResponse == null || payloadResponse.equals(
+                                                WalletPayload.KEY_AUTH_REQUIRED)) {
                                                 showErrorToastAndRestartApp(R.string.auth_failed);
                                                 return;
 
@@ -108,7 +105,7 @@ public class ManualPairingViewModel extends BaseViewModel {
                         }));
     }
 
-    private void attemptDecryptPayload(CharSequenceX password, String guid, String payload) {
+    private void attemptDecryptPayload(String password, String guid, String payload) {
         mAuthDataManager.attemptDecryptPayload(password, guid, payload, new AuthDataManager.DecryptPayloadListener() {
             @Override
             public void onSuccess() {

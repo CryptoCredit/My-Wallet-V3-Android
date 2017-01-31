@@ -1,15 +1,30 @@
 package piuk.blockchain.android.ui.backup;
 
-import android.app.Application;
+import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyListOf;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
+import android.app.Application;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.payment.Payment;
-import info.blockchain.wallet.util.CharSequenceX;
-
+import io.reactivex.Observable;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang3.tuple.Triple;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,11 +35,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Observable;
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.data.datamanagers.TransferFundsDataManager;
@@ -41,21 +51,6 @@ import piuk.blockchain.android.util.ExchangeRateFactory;
 import piuk.blockchain.android.util.MonetaryUtil;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.StringUtils;
-
-import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyListOf;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 @SuppressWarnings("PrivateMemberAccessBetweenOuterAndInnerClass")
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)
@@ -151,7 +146,7 @@ public class ConfirmFundsTransferViewModelTest {
     @Test
     public void sendPaymentAndArchive() throws Exception {
         // Arrange
-        when(mFundsDataManager.sendPayment(any(Payment.class), anyListOf(PendingTransaction.class), any(CharSequenceX.class))).thenReturn(Observable.just("hash"));
+        when(mFundsDataManager.sendPayment(any(Payment.class), anyListOf(PendingTransaction.class), anyString())).thenReturn(Observable.just("hash"));
         when(mActivity.getIfArchiveChecked()).thenReturn(true);
         PendingTransaction transaction = new PendingTransaction();
         transaction.sendingObject = new ItemAccount("", "", null, null, null);
@@ -161,7 +156,7 @@ public class ConfirmFundsTransferViewModelTest {
         }};
         when(mFundsDataManager.savePayloadToServer()).thenReturn(Observable.just(true));
         // Act
-        mSubject.sendPayment(new CharSequenceX("password"));
+        mSubject.sendPayment("password");
         // Assert
         verify(mActivity).getIfArchiveChecked();
         verify(mActivity).setPaymentButtonEnabled(false);
@@ -176,10 +171,10 @@ public class ConfirmFundsTransferViewModelTest {
     @Test
     public void sendPaymentNoArchive() throws Exception {
         // Arrange
-        when(mFundsDataManager.sendPayment(any(Payment.class), anyListOf(PendingTransaction.class), any(CharSequenceX.class))).thenReturn(Observable.just("hash"));
+        when(mFundsDataManager.sendPayment(any(Payment.class), anyListOf(PendingTransaction.class), anyString())).thenReturn(Observable.just("hash"));
         when(mActivity.getIfArchiveChecked()).thenReturn(false);
         // Act
-        mSubject.sendPayment(new CharSequenceX("password"));
+        mSubject.sendPayment("password");
         // Assert
         verify(mActivity).getIfArchiveChecked();
         verify(mActivity).setPaymentButtonEnabled(false);
@@ -194,10 +189,10 @@ public class ConfirmFundsTransferViewModelTest {
     @Test
     public void sendPaymentError() throws Exception {
         // Arrange
-        when(mFundsDataManager.sendPayment(any(Payment.class), anyListOf(PendingTransaction.class), any(CharSequenceX.class))).thenReturn(Observable.error(new Throwable()));
+        when(mFundsDataManager.sendPayment(any(Payment.class), anyListOf(PendingTransaction.class), anyString())).thenReturn(Observable.error(new Throwable()));
         when(mActivity.getIfArchiveChecked()).thenReturn(false);
         // Act
-        mSubject.sendPayment(new CharSequenceX("password"));
+        mSubject.sendPayment("password");
         // Assert
         verify(mActivity).getIfArchiveChecked();
         verify(mActivity).setPaymentButtonEnabled(false);

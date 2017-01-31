@@ -9,7 +9,6 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Build;
 import android.support.v4.content.LocalBroadcastManager;
-
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import piuk.blockchain.android.data.rxjava.IgnorableDefaultObserver;

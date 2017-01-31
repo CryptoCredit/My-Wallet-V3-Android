@@ -2,7 +2,6 @@ package piuk.blockchain.android.ui.transactions;
 
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.HDWallet;
@@ -10,7 +9,6 @@ import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.transaction.Transaction;
 import info.blockchain.wallet.transaction.Tx;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

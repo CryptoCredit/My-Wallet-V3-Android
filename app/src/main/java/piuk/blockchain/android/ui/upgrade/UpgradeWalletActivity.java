@@ -21,11 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
 import info.blockchain.wallet.util.PasswordUtil;
-
 import io.reactivex.exceptions.Exceptions;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
@@ -121,8 +118,8 @@ public class UpgradeWalletActivity extends BaseAuthActivity {
                                 showToast(R.string.password_mismatch_error, ToastCustom.TYPE_ERROR);
                             } else {
 
-                                final CharSequenceX currentPassword = payloadManager.getTempPassword();
-                                payloadManager.setTempPassword(new CharSequenceX(password2));
+                                final String currentPassword = payloadManager.getTempPassword();
+                                payloadManager.setTempPassword(password2);
 
                                 AccessState.getInstance().createPin(payloadManager.getTempPassword(), AccessState.getInstance().getPIN())
                                         .subscribe(success -> {
@@ -151,18 +148,18 @@ public class UpgradeWalletActivity extends BaseAuthActivity {
         new SecondPasswordHandler(UpgradeWalletActivity.this).validate(new SecondPasswordHandler.ResultListener() {
             @Override
             public void onNoSecondPassword() {
-                doUpgrade(new CharSequenceX(""));
+                doUpgrade("");
             }
 
             @Override
             public void onSecondPasswordValidated(String validateSecondPassword) {
-                doUpgrade(new CharSequenceX(validateSecondPassword));
+                doUpgrade(validateSecondPassword);
             }
         });
     }
 
     @Thunk
-    void doUpgrade(final CharSequenceX secondPassword) {
+    void doUpgrade(final String secondPassword) {
 
         onUpgradeStart();
 

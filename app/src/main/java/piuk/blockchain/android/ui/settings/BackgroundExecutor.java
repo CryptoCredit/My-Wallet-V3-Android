@@ -2,7 +2,6 @@ package piuk.blockchain.android.ui.settings;
 
 import android.content.Context;
 import android.os.AsyncTask;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.customviews.MaterialProgressDialog;
 

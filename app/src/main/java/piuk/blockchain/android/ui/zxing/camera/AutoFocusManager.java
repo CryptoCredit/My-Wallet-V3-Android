@@ -22,10 +22,8 @@ import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collection;
-
 import piuk.blockchain.android.ui.zxing.PreferencesActivity;
 import piuk.blockchain.android.ui.zxing.common.executor.AsyncTaskExecInterface;
 import piuk.blockchain.android.ui.zxing.common.executor.AsyncTaskExecManager;

@@ -1,14 +1,11 @@
 package piuk.blockchain.android.data.notifications;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
+import com.google.firebase.iid.FirebaseInstanceId;
 import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
-
 import io.reactivex.Completable;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.rxjava.RxUtil;

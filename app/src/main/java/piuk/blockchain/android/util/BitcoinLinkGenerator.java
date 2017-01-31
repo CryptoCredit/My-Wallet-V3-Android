@@ -2,7 +2,6 @@ package piuk.blockchain.android.util;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
 import org.bitcoinj.uri.BitcoinURI;
 
 /**

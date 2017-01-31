@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.StringRes;
 import android.support.annotation.VisibleForTesting;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.QrCodeDataManager;
 import piuk.blockchain.android.injection.Injector;

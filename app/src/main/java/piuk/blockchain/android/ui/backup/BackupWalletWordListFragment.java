@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.FragmentBackupWordListBinding;
 import piuk.blockchain.android.util.BackupWalletUtil;

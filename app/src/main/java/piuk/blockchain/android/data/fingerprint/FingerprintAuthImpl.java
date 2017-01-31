@@ -1,12 +1,10 @@
 package piuk.blockchain.android.data.fingerprint;
 
 import android.content.Context;
-
 import com.mtramin.rxfingerprint.RxFingerprint;
 import com.mtramin.rxfingerprint.data.FingerprintAuthenticationResult;
 import com.mtramin.rxfingerprint.data.FingerprintDecryptionResult;
 import com.mtramin.rxfingerprint.data.FingerprintEncryptionResult;
-
 import io.reactivex.Observable;
 
 public class FingerprintAuthImpl implements FingerprintAuth {

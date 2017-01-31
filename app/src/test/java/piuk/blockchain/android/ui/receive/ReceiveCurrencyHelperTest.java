@@ -1,18 +1,23 @@
 package piuk.blockchain.android.ui.receive;
 
-import android.app.Application;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Matchers.anyDouble;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import android.app.Application;
+import java.math.BigInteger;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RuntimeEnvironment;
-
-import java.math.BigInteger;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import piuk.blockchain.android.injection.ApiModule;
 import piuk.blockchain.android.injection.ApplicationModule;
 import piuk.blockchain.android.injection.DataManagerModule;
@@ -21,14 +26,6 @@ import piuk.blockchain.android.injection.InjectorTestUtils;
 import piuk.blockchain.android.util.ExchangeRateFactory;
 import piuk.blockchain.android.util.MonetaryUtil;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
-import static org.mockito.Matchers.anyDouble;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class ReceiveCurrencyHelperTest {
 

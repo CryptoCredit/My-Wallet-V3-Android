@@ -1,24 +1,5 @@
 package piuk.blockchain.android.ui.swipetoreceive;
 
-import info.blockchain.wallet.multiaddr.MultiAddrFactory;
-import info.blockchain.wallet.payload.Account;
-import info.blockchain.wallet.payload.HDWallet;
-import info.blockchain.wallet.payload.Payload;
-import info.blockchain.wallet.payload.PayloadManager;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-
-import io.reactivex.observers.TestObserver;
-import piuk.blockchain.android.RxTest;
-import piuk.blockchain.android.util.PrefsUtil;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyListOf;
@@ -28,6 +9,22 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static piuk.blockchain.android.ui.swipetoreceive.SwipeToReceiveHelper.KEY_SWIPE_RECEIVE_ACCOUNT_NAME;
 import static piuk.blockchain.android.ui.swipetoreceive.SwipeToReceiveHelper.KEY_SWIPE_RECEIVE_ADDRESSES;
+
+import info.blockchain.wallet.multiaddr.MultiAddrFactory;
+import info.blockchain.wallet.payload.Account;
+import info.blockchain.wallet.payload.HDWallet;
+import info.blockchain.wallet.payload.Payload;
+import info.blockchain.wallet.payload.PayloadManager;
+import io.reactivex.observers.TestObserver;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import piuk.blockchain.android.RxTest;
+import piuk.blockchain.android.util.PrefsUtil;
 
 public class SwipeToReceiveHelperTest extends RxTest {
 

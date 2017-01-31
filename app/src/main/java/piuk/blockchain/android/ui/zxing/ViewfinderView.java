@@ -16,8 +16,6 @@
 
 package piuk.blockchain.android.ui.zxing;
 
-import com.google.zxing.ResultPoint;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -28,10 +26,9 @@ import android.graphics.Rect;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
-
+import com.google.zxing.ResultPoint;
 import java.util.ArrayList;
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.zxing.camera.CameraManager;
 

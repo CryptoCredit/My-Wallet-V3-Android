@@ -16,22 +16,19 @@ package piuk.blockchain.android.ui.zxing.encode;
  * limitations under the License.
  */
 
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.telephony.PhoneNumberUtils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.telephony.PhoneNumberUtils;
-
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
-
 import piuk.blockchain.android.ui.zxing.Contents;
 
 public final class QRCodeEncoder {

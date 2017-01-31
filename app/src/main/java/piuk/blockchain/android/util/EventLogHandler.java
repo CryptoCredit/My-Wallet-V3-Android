@@ -1,15 +1,12 @@
 package piuk.blockchain.android.util;
 
 import android.util.Log;
-
 import info.blockchain.wallet.util.FormatsUtil;
 import info.blockchain.wallet.util.WebUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class EventLogHandler {

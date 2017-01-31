@@ -1,7 +1,6 @@
 package piuk.blockchain.android.ui.base;
 
 import android.support.annotation.CallSuper;
-
 import io.reactivex.disposables.CompositeDisposable;
 import piuk.blockchain.android.injection.Injector;
 

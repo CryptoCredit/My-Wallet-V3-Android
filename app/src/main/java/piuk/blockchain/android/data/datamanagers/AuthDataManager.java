@@ -2,8 +2,7 @@ package piuk.blockchain.android.data.datamanagers;
 
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
-
-import info.blockchain.api.WalletPayload;
+import info.blockchain.wallet.api.WalletPayload;
 import info.blockchain.wallet.exceptions.DecryptionException;
 import info.blockchain.wallet.exceptions.HDWalletException;
 import info.blockchain.wallet.exceptions.InvalidCredentialsException;
@@ -11,13 +10,6 @@ import info.blockchain.wallet.exceptions.PayloadException;
 import info.blockchain.wallet.payload.BlockchainWallet;
 import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.Observable;
@@ -25,6 +17,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.exceptions.Exceptions;
 import io.reactivex.schedulers.Schedulers;
+import java.util.concurrent.TimeUnit;
+import org.json.JSONException;
+import org.json.JSONObject;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.rxjava.RxUtil;
@@ -72,16 +67,16 @@ public class AuthDataManager {
         return walletPayloadService.getSessionId(guid);
     }
 
-    public Completable updatePayload(String sharedKey, String guid, CharSequenceX password) {
+    public Completable updatePayload(String sharedKey, String guid, String password) {
         return getUpdatePayloadObservable(sharedKey, guid, password)
                 .compose(RxUtil.applySchedulersToCompletable());
     }
 
-    public Observable<CharSequenceX> validatePin(String pin) {
+    public Observable<String> validatePin(String pin) {
         return accessState.validatePin(pin);
     }
 
-    public Observable<Boolean> createPin(CharSequenceX password, String pin) {
+    public Observable<Boolean> createPin(String password, String pin) {
         return accessState.createPin(password, pin)
                 .compose(RxUtil.applySchedulersToObservable());
     }
@@ -132,7 +127,7 @@ public class AuthDataManager {
                         .toObservable());
     }
 
-    private Completable getUpdatePayloadObservable(String sharedKey, String guid, CharSequenceX password) {
+    private Completable getUpdatePayloadObservable(String sharedKey, String guid, String password) {
         return Completable.defer(() -> Completable.create(subscriber -> {
             try {
                 payloadManager.initiatePayload(
@@ -165,7 +160,7 @@ public class AuthDataManager {
     /*
      * TODO - move to jar and make more testable
      */
-    public void attemptDecryptPayload(CharSequenceX password, String guid, String payload, DecryptPayloadListener listener) {
+    public void attemptDecryptPayload(String password, String guid, String payload, DecryptPayloadListener listener) {
         try {
             JSONObject jsonObject = new JSONObject(payload);
 
@@ -206,7 +201,7 @@ public class AuthDataManager {
         }
     }
 
-    private void attemptUpdatePayload(CharSequenceX password, String guid, String decryptedPayload, DecryptPayloadListener listener) throws JSONException {
+    private void attemptUpdatePayload(String password, String guid, String decryptedPayload, DecryptPayloadListener listener) throws JSONException {
         JSONObject decryptedJsonObject = new JSONObject(decryptedPayload);
 
         if (decryptedJsonObject.has("sharedKey")) {

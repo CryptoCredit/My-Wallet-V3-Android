@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.Toolbar;
 import android.view.inputmethod.EditorInfo;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityRecoverFundsBinding;
 import piuk.blockchain.android.ui.auth.PinEntryActivity;

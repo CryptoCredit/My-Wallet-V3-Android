@@ -1,5 +1,13 @@
 package piuk.blockchain.android.ui.send;
 
+import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_CONTACT_ID;
+import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_CONTACT_MDID;
+import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_FCTX_ID;
+import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_IS_BTC;
+import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_SCAN_DATA;
+import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_SCAN_DATA_ADDRESS_INPUT_ROUTE;
+import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_SELECTED_ACCOUNT_POSITION;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -11,11 +19,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
-
-import info.blockchain.api.DynamicFee;
-import info.blockchain.api.PersistentUrls;
-import info.blockchain.api.Unspent;
-import info.blockchain.util.FeeUtil;
+import info.blockchain.wallet.api.DynamicFee;
+import info.blockchain.wallet.api.PersistentUrls;
+import info.blockchain.wallet.api.Unspent;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.AddressBookEntry;
@@ -27,16 +33,11 @@ import info.blockchain.wallet.payment.data.SuggestedFee;
 import info.blockchain.wallet.payment.data.SweepBundle;
 import info.blockchain.wallet.payment.data.UnspentOutputs;
 import info.blockchain.wallet.send.SendCoins;
-import info.blockchain.wallet.util.CharSequenceX;
+import info.blockchain.wallet.util.FeeUtil;
 import info.blockchain.wallet.util.FormatsUtil;
 import info.blockchain.wallet.util.PrivateKeyFactory;
 import info.blockchain.wallet.util.WebUtil;
-
-import org.bitcoinj.core.AddressFormatException;
-import org.bitcoinj.core.ECKey;
-import org.bitcoinj.crypto.BIP38PrivateKey;
-import org.json.JSONObject;
-
+import io.reactivex.Observable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
@@ -49,10 +50,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
+import org.bitcoinj.core.AddressFormatException;
+import org.bitcoinj.core.ECKey;
+import org.bitcoinj.crypto.BIP38PrivateKey;
+import org.json.JSONObject;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.cache.DefaultAccountUnspentCache;
 import piuk.blockchain.android.data.cache.DynamicFeeCache;
@@ -75,14 +77,6 @@ import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.SSLVerifyUtil;
 import piuk.blockchain.android.util.StringUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_CONTACT_ID;
-import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_CONTACT_MDID;
-import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_FCTX_ID;
-import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_IS_BTC;
-import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_SCAN_DATA;
-import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_SCAN_DATA_ADDRESS_INPUT_ROUTE;
-import static piuk.blockchain.android.ui.send.SendFragment.ARGUMENT_SELECTED_ACCOUNT_POSITION;
 
 @SuppressWarnings("WeakerAccess")
 public class SendViewModel extends BaseViewModel {
@@ -1170,7 +1164,7 @@ public class SendViewModel extends BaseViewModel {
                 changeAddress = legacyAddress.getAddress();
 
                 if (!legacyAddress.isWatchOnly() && payloadManager.getPayload().isDoubleEncrypted()) {
-                    ECKey walletKey = legacyAddress.getECKey(new CharSequenceX(sendModel.verifiedSecondPassword));
+                    ECKey walletKey = legacyAddress.getECKey(sendModel.verifiedSecondPassword);
                     keys.add(walletKey);
                 } else {
                     ECKey walletKey = legacyAddress.getECKey();

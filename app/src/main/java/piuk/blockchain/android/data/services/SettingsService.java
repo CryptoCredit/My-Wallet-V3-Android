@@ -1,7 +1,6 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.Settings;
-
+import info.blockchain.wallet.api.Settings;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 

@@ -1,21 +1,18 @@
 package piuk.blockchain.android.ui.recover;
 
+import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_EMAIL;
+import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_PASSWORD;
+
 import android.content.Intent;
 import android.support.annotation.StringRes;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.AuthDataManager;
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.ui.base.BaseViewModel;
 import piuk.blockchain.android.ui.customviews.ToastCustom;
 import piuk.blockchain.android.util.AppUtil;
-
-import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_EMAIL;
-import static piuk.blockchain.android.ui.auth.CreateWalletFragment.KEY_INTENT_PASSWORD;
 
 public class RecoverFundsViewModel extends BaseViewModel {
 

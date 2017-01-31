@@ -24,7 +24,6 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.BatteryManager;
 import android.util.Log;
-
 import piuk.blockchain.android.ui.zxing.common.executor.AsyncTaskExecInterface;
 import piuk.blockchain.android.ui.zxing.common.executor.AsyncTaskExecManager;
 

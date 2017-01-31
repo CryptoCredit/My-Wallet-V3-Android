@@ -10,7 +10,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.FragmentContactsInvitationBuilderRecipientBinding;
 import piuk.blockchain.android.util.annotations.Thunk;

@@ -1,13 +1,25 @@
 package piuk.blockchain.android.ui.settings;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNotSame;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
 import android.app.Application;
 import android.content.Context;
-
-import info.blockchain.api.Settings;
+import info.blockchain.wallet.api.Settings;
 import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
+import io.reactivex.Observable;
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,10 +28,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
-import java.util.ArrayList;
-
-import io.reactivex.Observable;
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.data.access.AccessState;
@@ -33,20 +41,6 @@ import piuk.blockchain.android.ui.customviews.ToastCustom;
 import piuk.blockchain.android.ui.fingerprint.FingerprintHelper;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.StringUtils;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertNotSame;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 @SuppressWarnings("PrivateMemberAccessBetweenOuterAndInnerClass")
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)
@@ -186,7 +180,7 @@ public class SettingsViewModelTest {
     @Test
     public void pinCodeValidated() throws Exception {
         // Arrange
-        CharSequenceX pincode = new CharSequenceX("");
+        String pincode = new String("");
         // Act
         subject.pinCodeValidatedForFingerprint(pincode);
         // Assert
@@ -206,10 +200,10 @@ public class SettingsViewModelTest {
     @Test
     public void getTempPassword() throws Exception {
         // Arrange
-        CharSequenceX password = new CharSequenceX("");
+        String password = new String("");
         when(payloadManager.getTempPassword()).thenReturn(password);
         // Act
-        CharSequenceX value = subject.getTempPassword();
+        String value = subject.getTempPassword();
         // Assert
         assertEquals(password, value);
     }
@@ -524,10 +518,10 @@ public class SettingsViewModelTest {
     @Test
     public void updatePasswordSuccess() throws Exception {
         // Arrange
-        CharSequenceX newPassword = new CharSequenceX("new password");
-        CharSequenceX oldPassword = new CharSequenceX("old password");
+        String newPassword = new String("new password");
+        String oldPassword = new String("old password");
         when(accessState.getPIN()).thenReturn("1234");
-        when(accessState.createPin(any(CharSequenceX.class), anyString())).thenReturn(Observable.just(true));
+        when(accessState.createPin(anyString(), anyString())).thenReturn(Observable.just(true));
         when(accessState.syncPayloadToServer()).thenReturn(Observable.just(true));
         // Act
         subject.updatePassword(newPassword, oldPassword);
@@ -542,10 +536,10 @@ public class SettingsViewModelTest {
     @Test
     public void updatePasswordFailed() throws Exception {
         // Arrange
-        CharSequenceX newPassword = new CharSequenceX("new password");
-        CharSequenceX oldPassword = new CharSequenceX("old password");
+        String newPassword = new String("new password");
+        String oldPassword = new String("old password");
         when(accessState.getPIN()).thenReturn("1234");
-        when(accessState.createPin(any(CharSequenceX.class), anyString())).thenReturn(Observable.just(false));
+        when(accessState.createPin(anyString(), anyString())).thenReturn(Observable.just(false));
         // Act
         subject.updatePassword(newPassword, oldPassword);
         // Assert
@@ -559,10 +553,10 @@ public class SettingsViewModelTest {
     @Test
     public void updatePasswordError() throws Exception {
         // Arrange
-        CharSequenceX newPassword = new CharSequenceX("new password");
-        CharSequenceX oldPassword = new CharSequenceX("old password");
+        String newPassword = new String("new password");
+        String oldPassword = new String("old password");
         when(accessState.getPIN()).thenReturn("1234");
-        when(accessState.createPin(any(CharSequenceX.class), anyString())).thenReturn(Observable.error(new Throwable()));
+        when(accessState.createPin(anyString(), anyString())).thenReturn(Observable.error(new Throwable()));
         // Act
         subject.updatePassword(newPassword, oldPassword);
         // Assert

@@ -1,12 +1,10 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.PinStore;
+import info.blockchain.wallet.api.PinStore;
 import info.blockchain.wallet.exceptions.InvalidCredentialsException;
-
-import org.json.JSONObject;
-
-import piuk.blockchain.android.data.rxjava.RxUtil;
 import io.reactivex.Observable;
+import org.json.JSONObject;
+import piuk.blockchain.android.data.rxjava.RxUtil;
 
 public class PinStoreService {
 

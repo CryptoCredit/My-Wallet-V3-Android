@@ -7,15 +7,12 @@ import info.blockchain.wallet.payment.Payment;
 import info.blockchain.wallet.payment.data.SpendableUnspentOutputs;
 import info.blockchain.wallet.payment.data.SweepBundle;
 import info.blockchain.wallet.payment.data.UnspentOutputs;
-
-import org.bitcoinj.core.ECKey;
-
-import java.math.BigInteger;
-import java.util.List;
-
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
+import java.math.BigInteger;
+import java.util.List;
+import org.bitcoinj.core.ECKey;
 import piuk.blockchain.android.data.cache.DynamicFeeCache;
 import piuk.blockchain.android.data.rxjava.IgnorableDefaultObserver;
 import piuk.blockchain.android.data.rxjava.RxUtil;

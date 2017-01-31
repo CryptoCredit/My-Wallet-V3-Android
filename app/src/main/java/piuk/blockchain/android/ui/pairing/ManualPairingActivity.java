@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityManualPairingBinding;
 import piuk.blockchain.android.ui.auth.PinEntryActivity;

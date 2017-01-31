@@ -1,5 +1,9 @@
 package piuk.blockchain.android.ui.backup;
 
+import static android.app.Activity.RESULT_OK;
+import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATING_PIN_FOR_RESULT;
+import static piuk.blockchain.android.ui.auth.PinEntryFragment.REQUEST_CODE_VALIDATE_PIN;
+
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -11,19 +15,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.FragmentBackupStartBinding;
 import piuk.blockchain.android.ui.account.SecondPasswordHandler;
 import piuk.blockchain.android.ui.auth.PinEntryActivity;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static android.app.Activity.RESULT_OK;
-import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATING_PIN_FOR_RESULT;
-import static piuk.blockchain.android.ui.auth.PinEntryFragment.REQUEST_CODE_VALIDATE_PIN;
 
 public class BackupWalletStartingFragment extends Fragment {
 

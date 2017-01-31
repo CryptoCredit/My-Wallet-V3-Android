@@ -2,15 +2,12 @@ package piuk.blockchain.android.injection;
 
 import android.app.Application;
 import android.content.Context;
-
-import info.blockchain.api.PersistentUrls;
-import info.blockchain.wallet.multiaddr.MultiAddrFactory;
-import info.blockchain.wallet.util.PrivateKeyFactory;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import info.blockchain.wallet.api.PersistentUrls;
+import info.blockchain.wallet.multiaddr.MultiAddrFactory;
+import info.blockchain.wallet.util.PrivateKeyFactory;
+import javax.inject.Singleton;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.util.AESUtilWrapper;
 import piuk.blockchain.android.util.AppUtil;

@@ -1,10 +1,8 @@
 package piuk.blockchain.android.injection;
 
-import info.blockchain.wallet.util.PrivateKeyFactory;
-
-import javax.inject.Singleton;
-
 import dagger.Component;
+import info.blockchain.wallet.util.PrivateKeyFactory;
+import javax.inject.Singleton;
 import piuk.blockchain.android.BlockchainApplication;
 import piuk.blockchain.android.data.api.DebugSettings;
 import piuk.blockchain.android.data.datamanagers.ContactsDataManager;

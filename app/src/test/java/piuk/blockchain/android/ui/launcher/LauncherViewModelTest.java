@@ -1,13 +1,20 @@
 package piuk.blockchain.android.ui.launcher;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static piuk.blockchain.android.ui.launcher.LauncherViewModel.INTENT_EXTRA_VERIFIED;
+
 import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +23,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.injection.ApiModule;
@@ -26,15 +32,6 @@ import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.injection.InjectorTestUtils;
 import piuk.blockchain.android.util.AppUtil;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static piuk.blockchain.android.ui.launcher.LauncherViewModel.INTENT_EXTRA_VERIFIED;
 
 /**
  * Created by adambennett on 09/08/2016.

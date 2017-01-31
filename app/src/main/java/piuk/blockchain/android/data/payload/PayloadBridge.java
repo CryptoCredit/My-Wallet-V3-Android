@@ -2,7 +2,6 @@ package piuk.blockchain.android.data.payload;
 
 import android.os.Looper;
 import android.support.annotation.Nullable;
-
 import info.blockchain.wallet.payload.PayloadManager;
 
 /**

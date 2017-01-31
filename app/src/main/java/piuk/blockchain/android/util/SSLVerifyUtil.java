@@ -2,21 +2,16 @@ package piuk.blockchain.android.util;
 
 import android.content.Context;
 import android.util.Log;
-
-import info.blockchain.api.PersistentUrls;
-
-import org.thoughtcrime.ssl.pinning.util.PinningHelper;
-
-import java.io.IOException;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLHandshakeException;
-
+import info.blockchain.wallet.api.PersistentUrls;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
+import java.io.IOException;
+import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLHandshakeException;
+import org.thoughtcrime.ssl.pinning.util.PinningHelper;
 import piuk.blockchain.android.data.connectivity.ConnectivityStatus;
 import piuk.blockchain.android.util.annotations.Thunk;
 

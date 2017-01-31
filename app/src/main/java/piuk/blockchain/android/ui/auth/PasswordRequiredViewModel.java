@@ -5,12 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
 import android.support.annotation.VisibleForTesting;
-
-import info.blockchain.api.WalletPayload;
-import info.blockchain.wallet.util.CharSequenceX;
-
+import info.blockchain.wallet.api.WalletPayload;
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.datamanagers.AuthDataManager;
@@ -64,7 +60,7 @@ public class PasswordRequiredViewModel extends BaseViewModel {
 
     public void onContinueClicked() {
         if (mDataListener.getPassword().length() > 1) {
-            verifyPassword(new CharSequenceX(mDataListener.getPassword()));
+            verifyPassword(mDataListener.getPassword());
         } else {
             mDataListener.showToast(R.string.invalid_password, ToastCustom.TYPE_ERROR);
             mDataListener.restartPage();
@@ -85,7 +81,7 @@ public class PasswordRequiredViewModel extends BaseViewModel {
         });
     }
 
-    private void verifyPassword(CharSequenceX password) {
+    private void verifyPassword(String password) {
         mDataListener.showProgressDialog(R.string.validating_password, null, false);
 
         String guid = mPrefsUtil.getValue(PrefsUtil.KEY_GUID, "");
@@ -122,7 +118,7 @@ public class PasswordRequiredViewModel extends BaseViewModel {
                         }));
     }
 
-    private void attemptDecryptPayload(CharSequenceX password, String guid, String payload) {
+    private void attemptDecryptPayload(String password, String guid, String payload) {
         mAuthDataManager.attemptDecryptPayload(password, guid, payload, new AuthDataManager.DecryptPayloadListener() {
             @Override
             public void onSuccess() {

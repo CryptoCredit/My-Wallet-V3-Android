@@ -13,17 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import info.blockchain.api.Unspent;
+import info.blockchain.wallet.api.Unspent;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.payment.Payment;
-
+import io.reactivex.disposables.CompositeDisposable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import io.reactivex.disposables.CompositeDisposable;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.TransferFundsDataManager;
 import piuk.blockchain.android.databinding.AlertPromptTransferFundsBinding;

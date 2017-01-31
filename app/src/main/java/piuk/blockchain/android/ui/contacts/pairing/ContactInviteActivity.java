@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityContactPairingMethodBinding;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;

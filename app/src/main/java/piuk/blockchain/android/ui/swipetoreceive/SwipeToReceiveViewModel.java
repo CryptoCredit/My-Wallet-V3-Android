@@ -1,10 +1,8 @@
 package piuk.blockchain.android.ui.swipetoreceive;
 
 import android.graphics.Bitmap;
-
-import javax.inject.Inject;
-
 import io.reactivex.exceptions.Exceptions;
+import javax.inject.Inject;
 import piuk.blockchain.android.data.datamanagers.QrCodeDataManager;
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.ui.base.BaseViewModel;

@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.text.format.DateUtils;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.customviews.ToastCustom;
 

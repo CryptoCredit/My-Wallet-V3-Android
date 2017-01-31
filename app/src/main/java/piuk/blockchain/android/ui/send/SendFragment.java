@@ -1,5 +1,7 @@
 package piuk.blockchain.android.ui.send;
 
+import static android.databinding.DataBindingUtil.inflate;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -38,7 +40,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.connectivity.ConnectivityStatus;
@@ -64,8 +65,6 @@ import piuk.blockchain.android.util.PermissionUtil;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static android.databinding.DataBindingUtil.inflate;
 
 
 public class SendFragment extends Fragment implements SendViewModel.DataListener, CustomKeypadCallback {

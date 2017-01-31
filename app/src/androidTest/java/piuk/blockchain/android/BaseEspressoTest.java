@@ -1,7 +1,6 @@
 package piuk.blockchain.android;
 
 import android.support.test.InstrumentationRegistry;
-
 import piuk.blockchain.android.util.PrefsUtil;
 
 public class BaseEspressoTest {

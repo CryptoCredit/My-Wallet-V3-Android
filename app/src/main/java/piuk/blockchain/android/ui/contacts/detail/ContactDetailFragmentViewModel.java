@@ -1,23 +1,23 @@
 package piuk.blockchain.android.ui.contacts.detail;
 
+import static piuk.blockchain.android.ui.balance.BalanceFragment.SHOW_BTC;
+import static piuk.blockchain.android.ui.contacts.list.ContactsListActivity.KEY_BUNDLE_CONTACT_ID;
+import static piuk.blockchain.android.ui.send.SendViewModel.SHOW_FIAT;
+
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.util.Log;
-
 import info.blockchain.wallet.contacts.data.Contact;
 import info.blockchain.wallet.contacts.data.FacilitatedTransaction;
 import info.blockchain.wallet.contacts.data.PaymentRequest;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.PayloadManager;
-
+import io.reactivex.Observable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.contacts.ContactsPredicates;
 import piuk.blockchain.android.data.contacts.FctxDateComparator;
@@ -30,10 +30,6 @@ import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.ui.base.BaseViewModel;
 import piuk.blockchain.android.ui.customviews.ToastCustom;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static piuk.blockchain.android.ui.balance.BalanceFragment.SHOW_BTC;
-import static piuk.blockchain.android.ui.contacts.list.ContactsListActivity.KEY_BUNDLE_CONTACT_ID;
-import static piuk.blockchain.android.ui.send.SendViewModel.SHOW_FIAT;
 
 
 @SuppressWarnings("WeakerAccess")

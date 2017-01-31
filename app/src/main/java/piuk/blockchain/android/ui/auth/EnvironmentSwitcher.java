@@ -3,12 +3,9 @@ package piuk.blockchain.android.ui.auth;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.widget.ArrayAdapter;
-
-import info.blockchain.api.PersistentUrls;
-
+import info.blockchain.wallet.api.PersistentUrls;
 import java.util.Arrays;
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.api.DebugSettings;

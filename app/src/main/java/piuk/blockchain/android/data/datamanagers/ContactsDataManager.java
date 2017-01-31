@@ -1,7 +1,6 @@
 package piuk.blockchain.android.data.datamanagers;
 
 import android.support.annotation.Nullable;
-
 import info.blockchain.wallet.contacts.data.Contact;
 import info.blockchain.wallet.contacts.data.FacilitatedTransaction;
 import info.blockchain.wallet.contacts.data.PaymentRequest;
@@ -9,14 +8,11 @@ import info.blockchain.wallet.contacts.data.RequestForPaymentRequest;
 import info.blockchain.wallet.metadata.MetadataNodeFactory;
 import info.blockchain.wallet.metadata.data.Message;
 import info.blockchain.wallet.payload.PayloadManager;
-
-import org.bitcoinj.crypto.DeterministicKey;
-
-import java.util.List;
-
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
+import java.util.List;
+import org.bitcoinj.crypto.DeterministicKey;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.data.services.ContactsService;
 

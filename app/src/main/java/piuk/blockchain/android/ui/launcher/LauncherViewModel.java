@@ -1,21 +1,17 @@
 package piuk.blockchain.android.ui.launcher;
 
+import static piuk.blockchain.android.data.notifications.FcmCallbackService.EXTRA_CONTACTS_SERVICE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.ui.base.BaseViewModel;
 import piuk.blockchain.android.util.AppUtil;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static piuk.blockchain.android.data.notifications.FcmCallbackService.EXTRA_CONTACTS_SERVICE;
 
 /**
  * Created by adambennett on 09/08/2016.
@@ -84,7 +80,7 @@ public class LauncherViewModel extends BaseViewModel {
 
         // No GUID? Treat as new installation
         if (mPrefsUtil.getValue(PrefsUtil.KEY_GUID, "").isEmpty()) {
-            mPayloadManager.setTempPassword(new CharSequenceX(""));
+            mPayloadManager.setTempPassword("");
             mDataListener.onNoGuid();
 
         } else if (hasLoggedOut) {

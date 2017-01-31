@@ -2,7 +2,6 @@ package piuk.blockchain.android.ui.contacts.list;
 
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
-
 import java.util.List;
 
 class ContactsDiffUtil extends DiffUtil.Callback {

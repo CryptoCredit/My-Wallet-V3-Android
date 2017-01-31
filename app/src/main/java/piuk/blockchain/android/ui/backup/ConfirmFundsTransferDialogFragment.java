@@ -21,9 +21,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
-
-import info.blockchain.wallet.util.CharSequenceX;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.account.SecondPasswordHandler;
 import piuk.blockchain.android.ui.balance.BalanceFragment;
@@ -147,7 +144,7 @@ public class ConfirmFundsTransferDialogFragment extends AppCompatDialogFragment
 
                     @Override
                     public void onSecondPasswordValidated(String validateSecondPassword) {
-                        mViewModel.sendPayment(new CharSequenceX(validateSecondPassword));
+                        mViewModel.sendPayment(validateSecondPassword);
                     }
                 }));
 

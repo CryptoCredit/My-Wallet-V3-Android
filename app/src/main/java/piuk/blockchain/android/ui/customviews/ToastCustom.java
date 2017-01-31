@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
 import piuk.blockchain.android.R;
 
 public class ToastCustom {

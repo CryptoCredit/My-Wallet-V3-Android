@@ -1,9 +1,8 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.WalletPayload;
-
-import piuk.blockchain.android.data.rxjava.RxUtil;
+import info.blockchain.wallet.api.WalletPayload;
 import io.reactivex.Observable;
+import piuk.blockchain.android.data.rxjava.RxUtil;
 
 public class WalletPayloadService {
 

@@ -6,29 +6,24 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-
-import info.blockchain.api.Balance;
-import info.blockchain.api.DynamicFee;
-import info.blockchain.api.ExchangeTicker;
-import info.blockchain.api.Settings;
-import info.blockchain.api.Unspent;
+import info.blockchain.wallet.api.Balance;
+import info.blockchain.wallet.api.DynamicFee;
+import info.blockchain.wallet.api.ExchangeTicker;
+import info.blockchain.wallet.api.Settings;
+import info.blockchain.wallet.api.Unspent;
 import info.blockchain.wallet.exceptions.InvalidCredentialsException;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.util.WebUtil;
-
-import org.json.JSONObject;
-
+import io.reactivex.Completable;
+import io.reactivex.Observable;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.Completable;
-import io.reactivex.Observable;
+import org.json.JSONObject;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.cache.DefaultAccountUnspentCache;
 import piuk.blockchain.android.data.cache.DynamicFeeCache;

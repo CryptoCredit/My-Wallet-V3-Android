@@ -15,13 +15,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.contacts.PaymentRequestType;
 import piuk.blockchain.android.databinding.FragmentContactPaymentRequestAmountBinding;

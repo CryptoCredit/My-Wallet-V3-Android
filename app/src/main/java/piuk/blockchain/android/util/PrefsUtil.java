@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
-
 import piuk.blockchain.android.data.api.DebugSettings;
 
 public class PrefsUtil implements PersistentPrefs {

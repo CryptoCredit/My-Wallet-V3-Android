@@ -13,7 +13,6 @@ package piuk.blockchain.android.util;
 import android.os.Build;
 import android.os.Process;
 import android.util.Log;
-
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

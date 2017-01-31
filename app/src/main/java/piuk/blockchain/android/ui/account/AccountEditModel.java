@@ -6,7 +6,6 @@ import android.databinding.Bindable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.FloatRange;
 import android.support.v4.content.ContextCompat;
-
 import piuk.blockchain.android.BR;
 import piuk.blockchain.android.util.ViewUtils;
 

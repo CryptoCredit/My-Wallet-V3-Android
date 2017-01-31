@@ -18,7 +18,6 @@ package piuk.blockchain.android.ui.zxing.common;
 
 import android.os.Build;
 import android.util.Log;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.SortedMap;

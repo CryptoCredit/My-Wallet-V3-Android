@@ -1,19 +1,15 @@
 package piuk.blockchain.android.ui.pairing;
 
 import android.support.annotation.StringRes;
-
-import info.blockchain.api.WalletPayload;
-import info.blockchain.wallet.pairing.Pairing;
+import info.blockchain.wallet.api.WalletPayload;
+import info.blockchain.wallet.crypto.AESUtil;
 import info.blockchain.wallet.pairing.PairingQRComponents;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
-import org.spongycastle.util.encoders.Hex;
-
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
 import io.reactivex.exceptions.Exceptions;
+import java.util.regex.Pattern;
+import javax.inject.Inject;
+import org.spongycastle.util.encoders.Hex;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.injection.Injector;
@@ -56,11 +52,10 @@ public class PairingViewModel extends BaseViewModel {
 
         appUtil.clearCredentials();
 
-        Pairing pairing = new Pairing();
         WalletPayload access = new WalletPayload();
 
         compositeDisposable.add(
-                handleQrCode(raw, pairing, access)
+                handleQrCode(raw, access)
                         .compose(RxUtil.applySchedulersToObservable())
                         .subscribe(pairingQRComponents -> {
                             dataListener.dismissProgressDialog();
@@ -78,18 +73,62 @@ public class PairingViewModel extends BaseViewModel {
                         }));
     }
 
-    private Observable<PairingQRComponents> handleQrCode(String data, Pairing pairing, WalletPayload access) {
+    private Observable<PairingQRComponents> handleQrCode(String data, WalletPayload access) {
         return Observable.fromCallable(() -> {
-            PairingQRComponents qrComponents = pairing.getQRComponentsFromRawString(data);
+            PairingQRComponents qrComponents = getQRComponentsFromRawString(data);
             String encryptionPassword = access.getPairingEncryptionPassword(qrComponents.guid);
-            String[] sharedKeyAndPassword = pairing.getSharedKeyAndPassword(qrComponents.encryptedPairingCode, encryptionPassword);
+            String[] sharedKeyAndPassword = getSharedKeyAndPassword(qrComponents.encryptedPairingCode, encryptionPassword);
 
-            CharSequenceX password = new CharSequenceX(new String(Hex.decode(sharedKeyAndPassword[1]), "UTF-8"));
-
-            payloadManager.setTempPassword(password);
+            payloadManager.setTempPassword(new String(Hex.decode(sharedKeyAndPassword[1]), "UTF-8"));
             appUtil.setSharedKey(sharedKeyAndPassword[0]);
 
             return qrComponents;
         });
+    }
+
+    private PairingQRComponents getQRComponentsFromRawString(String rawString) throws Exception {
+
+        PairingQRComponents result = new PairingQRComponents();
+
+        if (rawString == null || rawString.length() == 0 || rawString.charAt(0) != '1') {
+            throw new Exception("QR string null or empty.");
+        }
+
+        String[] components = rawString.split("\\|", Pattern.LITERAL);
+
+        if (components.length != 3) {
+            throw new Exception("QR string does not have 3 components.");
+        }
+
+        result.guid = components[1];
+        if (result.guid.length() != 36) {
+            throw new Exception("GUID should be 36 characters in length.");
+        }
+
+        result.encryptedPairingCode = components[2];
+
+        return result;
+    }
+
+    private String[] getSharedKeyAndPassword(String encryptedPairingCode, String encryptionPassword) throws Exception {
+
+        String decryptedPairingCode = AESUtil
+            .decrypt(encryptedPairingCode, encryptionPassword, AESUtil.QR_CODE_PBKDF_2ITERATIONS);
+
+        if (decryptedPairingCode == null) {
+            throw new Exception("Pairing code decryption failed.");
+        }
+        String[] sharedKeyAndPassword = decryptedPairingCode.split("\\|", Pattern.LITERAL);
+
+        if (sharedKeyAndPassword.length < 2) {
+            throw new Exception("Invalid decrypted pairing code.");
+        }
+
+        String sharedKey = sharedKeyAndPassword[0];
+        if (sharedKey.length() != 36) {
+            throw new Exception("Invalid shared key.");
+        }
+
+        return sharedKeyAndPassword;
     }
 }

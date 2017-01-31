@@ -6,20 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
-
 import info.blockchain.wallet.crypto.AESUtil;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
-import org.spongycastle.util.encoders.Hex;
-
-import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
-
 import io.reactivex.Observable;
 import io.reactivex.exceptions.Exceptions;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
+import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
+import org.spongycastle.util.encoders.Hex;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.data.services.PinStoreService;
 import piuk.blockchain.android.ui.auth.LogoutActivity;
@@ -60,12 +55,12 @@ public class AccessState {
         return instance;
     }
 
-    public Observable<Boolean> createPin(CharSequenceX password, String passedPin) {
+    public Observable<Boolean> createPin(String password, String passedPin) {
         return createPinObservable(password, passedPin)
                 .compose(RxUtil.applySchedulersToObservable());
     }
 
-    public Observable<CharSequenceX> validatePin(String passedPin) {
+    public Observable<String> validatePin(String passedPin) {
         mPin = passedPin;
 
         String key = prefs.getValue(PrefsUtil.KEY_PIN_IDENTIFIER, "");
@@ -76,10 +71,10 @@ public class AccessState {
                     if (jsonObject.has("success")) {
                         try {
                             String decryptionKey = (String) jsonObject.get("success");
-                            return Observable.just(new CharSequenceX(
+                            return Observable.just(
                                     AESUtil.decrypt(encryptedPassword,
-                                            new CharSequenceX(decryptionKey),
-                                            AESUtil.PIN_PBKDF2_ITERATIONS)));
+                                            decryptionKey,
+                                            AESUtil.PIN_PBKDF2_ITERATIONS));
                         } catch (Exception e) {
                             throw Exceptions.propagate(new Throwable("Validate access failed"));
                         }
@@ -96,7 +91,7 @@ public class AccessState {
                 .compose(RxUtil.applySchedulersToObservable());
     }
 
-    private Observable<Boolean> createPinObservable(CharSequenceX password, String passedPin) {
+    private Observable<Boolean> createPinObservable(String password, String passedPin) {
         if (passedPin == null || passedPin.equals("0000") || passedPin.length() != 4) {
             return Observable.just(false);
         }
@@ -118,7 +113,7 @@ public class AccessState {
                             String encryptedPassword = null;
                             try {
                                 encryptedPassword = new AESUtilWrapper().encrypt(
-                                        password.toString(), new CharSequenceX(value), AESUtil.PIN_PBKDF2_ITERATIONS);
+                                        password.toString(), value, AESUtil.PIN_PBKDF2_ITERATIONS);
 
                                 prefs.setValue(PrefsUtil.KEY_ENCRYPTED_PASSWORD, encryptedPassword);
                                 prefs.setValue(PrefsUtil.KEY_PIN_IDENTIFIER, key);

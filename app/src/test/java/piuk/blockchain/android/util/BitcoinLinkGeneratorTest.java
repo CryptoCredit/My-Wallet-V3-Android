@@ -1,11 +1,9 @@
 package piuk.blockchain.android.util;
 
+import static junit.framework.Assert.assertEquals;
+
 import org.bitcoinj.uri.BitcoinURI;
 import org.junit.Test;
-
-import piuk.blockchain.android.util.BitcoinLinkGenerator;
-
-import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by adambennett on 28/07/2016.

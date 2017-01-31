@@ -1,5 +1,9 @@
 package piuk.blockchain.android.util;
 
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,13 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static android.view.View.GONE;
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
 
 /**
  * Created by adambennett on 29/07/2016.

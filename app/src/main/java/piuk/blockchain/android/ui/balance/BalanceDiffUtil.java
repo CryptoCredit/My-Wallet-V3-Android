@@ -2,9 +2,7 @@ package piuk.blockchain.android.ui.balance;
 
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
-
 import info.blockchain.wallet.transaction.Tx;
-
 import java.util.List;
 
 class BalanceDiffUtil extends DiffUtil.Callback {

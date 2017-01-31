@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.auth.CreateWalletFragment;
 import piuk.blockchain.android.ui.auth.PinEntryActivity;

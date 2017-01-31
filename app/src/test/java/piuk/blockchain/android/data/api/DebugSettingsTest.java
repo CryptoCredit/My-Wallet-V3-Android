@@ -1,9 +1,19 @@
 package piuk.blockchain.android.data.api;
 
+import static info.blockchain.wallet.api.PersistentUrls.Environment.DEV;
+import static info.blockchain.wallet.api.PersistentUrls.Environment.PRODUCTION;
+import static info.blockchain.wallet.api.PersistentUrls.Environment.STAGING;
+import static info.blockchain.wallet.api.PersistentUrls.Environment.TESTNET;
+import static info.blockchain.wallet.api.PersistentUrls.KEY_ENV_PROD;
+import static info.blockchain.wallet.api.PersistentUrls.KEY_ENV_STAGING;
+import static info.blockchain.wallet.api.PersistentUrls.KEY_ENV_TESTNET;
+import static junit.framework.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static piuk.blockchain.android.data.api.DebugSettings.KEY_CURRENT_ENVIRONMENT;
+
 import android.app.Application;
-
-import info.blockchain.api.PersistentUrls;
-
+import info.blockchain.wallet.api.PersistentUrls;
 import org.bitcoinj.params.MainNetParams;
 import org.bitcoinj.params.TestNet3Params;
 import org.junit.Before;
@@ -14,7 +24,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
 import piuk.blockchain.android.BlockchainTestApplication;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.injection.ApiModule;
@@ -24,18 +33,6 @@ import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.injection.InjectorTestUtils;
 import piuk.blockchain.android.util.AppUtil;
 import piuk.blockchain.android.util.PrefsUtil;
-
-import static info.blockchain.api.PersistentUrls.Environment.DEV;
-import static info.blockchain.api.PersistentUrls.Environment.PRODUCTION;
-import static info.blockchain.api.PersistentUrls.Environment.STAGING;
-import static info.blockchain.api.PersistentUrls.Environment.TESTNET;
-import static info.blockchain.api.PersistentUrls.KEY_ENV_PROD;
-import static info.blockchain.api.PersistentUrls.KEY_ENV_STAGING;
-import static info.blockchain.api.PersistentUrls.KEY_ENV_TESTNET;
-import static junit.framework.Assert.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static piuk.blockchain.android.data.api.DebugSettings.KEY_CURRENT_ENVIRONMENT;
 
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)
 @RunWith(RobolectricTestRunner.class)

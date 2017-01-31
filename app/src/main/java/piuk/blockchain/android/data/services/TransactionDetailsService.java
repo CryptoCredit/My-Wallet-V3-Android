@@ -1,10 +1,9 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.TransactionDetails;
+import info.blockchain.wallet.api.TransactionDetails;
 import info.blockchain.wallet.transaction.Transaction;
-
-import piuk.blockchain.android.data.rxjava.RxUtil;
 import io.reactivex.Observable;
+import piuk.blockchain.android.data.rxjava.RxUtil;
 
 public class TransactionDetailsService {
 

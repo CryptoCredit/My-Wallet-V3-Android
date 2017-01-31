@@ -16,10 +16,6 @@
 
 package piuk.blockchain.android.ui.zxing;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.Result;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -32,10 +28,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Browser;
 import android.util.Log;
-
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.Result;
 import java.util.Collection;
 import java.util.Map;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.zxing.camera.CameraManager;
 

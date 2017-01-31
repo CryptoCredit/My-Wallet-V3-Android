@@ -2,14 +2,10 @@ package piuk.blockchain.android.ui.send;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-
 import info.blockchain.wallet.payment.data.SuggestedFee;
-
-import org.json.JSONObject;
-
 import java.math.BigInteger;
 import java.util.HashMap;
-
+import org.json.JSONObject;
 import piuk.blockchain.android.BR;
 
 public class SendModel extends BaseObservable {

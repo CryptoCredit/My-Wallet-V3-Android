@@ -1,12 +1,10 @@
 package piuk.blockchain.android.ui.zxing;
 
-import com.google.zxing.DecodeHintType;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-
+import com.google.zxing.DecodeHintType;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;

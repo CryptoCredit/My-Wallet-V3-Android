@@ -18,12 +18,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
-
 import info.blockchain.wallet.contacts.data.FacilitatedTransaction;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.contacts.PaymentRequestType;
 import piuk.blockchain.android.databinding.FragmentContactDetailBinding;

@@ -3,15 +3,11 @@ package piuk.blockchain.android.ui.settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.annotation.VisibleForTesting;
-
-import info.blockchain.api.Settings;
+import info.blockchain.wallet.api.Settings;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
 import io.reactivex.exceptions.Exceptions;
+import javax.inject.Inject;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.datamanagers.SettingsDataManager;
@@ -33,7 +29,8 @@ public class SettingsViewModel extends BaseViewModel {
     @Inject protected StringUtils stringUtils;
     @Inject protected PrefsUtil prefsUtil;
     @Inject protected AccessState accessState;
-    @VisibleForTesting Settings settings;
+    @VisibleForTesting
+    Settings settings;
     private DataListener dataListener;
     private MonetaryUtil monetaryUtil;
 
@@ -43,7 +40,7 @@ public class SettingsViewModel extends BaseViewModel {
 
         void verifyPinCode();
 
-        void showFingerprintDialog(CharSequenceX pincode);
+        void showFingerprintDialog(String pincode);
 
         void showDisableFingerprintDialog();
 
@@ -281,9 +278,9 @@ public class SettingsViewModel extends BaseViewModel {
      * Displays fingerprint dialog after the PIN has been validated by {@link
      * piuk.blockchain.android.ui.auth.PinEntryActivity}
      *
-     * @param pinCode A {@link CharSequenceX} wrapping the validated PIN code
+     * @param pinCode A validated PIN code
      */
-    void pinCodeValidatedForFingerprint(CharSequenceX pinCode) {
+    void pinCodeValidatedForFingerprint(String pinCode) {
         dataListener.showFingerprintDialog(pinCode);
     }
 
@@ -326,7 +323,7 @@ public class SettingsViewModel extends BaseViewModel {
      * @return the temporary password from the Payload Manager
      */
     @NonNull
-    CharSequenceX getTempPassword() {
+    String getTempPassword() {
         return payloadManager.getTempPassword();
     }
 
@@ -543,10 +540,10 @@ public class SettingsViewModel extends BaseViewModel {
     /**
      * Updates the user's password
      *
-     * @param password         The requested new password as a {@link CharSequenceX}
+     * @param password         The requested new password as a String
      * @param fallbackPassword The user's current password as a fallback
      */
-    void updatePassword(@NonNull CharSequenceX password, @NonNull CharSequenceX fallbackPassword) {
+    void updatePassword(@NonNull String password, @NonNull String fallbackPassword) {
         dataListener.showProgressDialog(R.string.please_wait);
         payloadManager.setTempPassword(password);
 
@@ -569,7 +566,7 @@ public class SettingsViewModel extends BaseViewModel {
                         }, throwable -> showUpdatePasswordFailed(fallbackPassword)));
     }
 
-    private void showUpdatePasswordFailed(@NonNull CharSequenceX fallbackPassword) {
+    private void showUpdatePasswordFailed(@NonNull String fallbackPassword) {
         payloadManager.setTempPassword(fallbackPassword);
 
         dataListener.showToast(R.string.remote_save_ko, ToastCustom.TYPE_ERROR);

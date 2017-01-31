@@ -7,10 +7,8 @@ import android.support.annotation.IntDef;
 import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.api.DebugSettings;
 import piuk.blockchain.android.data.connectivity.ConnectivityStatus;

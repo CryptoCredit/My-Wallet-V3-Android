@@ -6,13 +6,10 @@ import info.blockchain.wallet.contacts.data.FacilitatedTransaction;
 import info.blockchain.wallet.contacts.data.PaymentRequest;
 import info.blockchain.wallet.contacts.data.RequestForPaymentRequest;
 import info.blockchain.wallet.metadata.data.Message;
-
-import org.bitcoinj.crypto.DeterministicKey;
-
-import java.util.List;
-
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import java.util.List;
+import org.bitcoinj.crypto.DeterministicKey;
 import piuk.blockchain.android.util.annotations.RequiresAccessToken;
 
 public class ContactsService {

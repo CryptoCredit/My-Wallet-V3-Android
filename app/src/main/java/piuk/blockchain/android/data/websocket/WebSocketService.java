@@ -8,12 +8,8 @@ import android.content.IntentFilter;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
-
 import info.blockchain.wallet.payload.PayloadManager;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.util.MonetaryUtil;
 import piuk.blockchain.android.util.PrefsUtil;

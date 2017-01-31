@@ -1,10 +1,8 @@
 package piuk.blockchain.android.data.api;
 
 import android.util.Log;
-
 import java.io.IOException;
 import java.util.Locale;
-
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.RequestBody;

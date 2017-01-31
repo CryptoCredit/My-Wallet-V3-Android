@@ -38,21 +38,17 @@ import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.ImportedAccount;
 import info.blockchain.wallet.payload.LegacyAddress;
-
-import org.bitcoinj.core.Coin;
-import org.bitcoinj.uri.BitcoinURI;
-
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
-
+import org.bitcoinj.core.Coin;
+import org.bitcoinj.uri.BitcoinURI;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.databinding.AlertWatchOnlySpendBinding;

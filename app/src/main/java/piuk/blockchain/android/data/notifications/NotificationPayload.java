@@ -1,11 +1,9 @@
 package piuk.blockchain.android.data.notifications;
 
 import android.support.annotation.Nullable;
-
+import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Map;
 
 public class NotificationPayload {
 

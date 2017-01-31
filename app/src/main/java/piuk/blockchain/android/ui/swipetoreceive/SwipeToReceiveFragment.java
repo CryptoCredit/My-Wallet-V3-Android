@@ -17,7 +17,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.websocket.WebSocketService;
 import piuk.blockchain.android.databinding.FragmentSwipeToReceiveBinding;

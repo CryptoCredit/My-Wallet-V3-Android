@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.api.DebugSettings;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import piuk.blockchain.android.util.ListUtil;
 
 public abstract class ListStore<T> {

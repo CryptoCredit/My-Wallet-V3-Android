@@ -3,19 +3,14 @@ package piuk.blockchain.android.ui.backup;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.VisibleForTesting;
-
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.payment.Payment;
-import info.blockchain.wallet.util.CharSequenceX;
-
+import io.reactivex.exceptions.Exceptions;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.exceptions.Exceptions;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.TransferFundsDataManager;
 import piuk.blockchain.android.injection.Injector;
@@ -137,7 +132,7 @@ public class ConfirmFundsTransferViewModel extends BaseViewModel {
      *
      * @param secondPassword The user's double encryption password if necessary
      */
-    public void sendPayment(@Nullable CharSequenceX secondPassword) {
+    public void sendPayment(@Nullable String secondPassword) {
         boolean archiveAll = mDataListener.getIfArchiveChecked();
         mDataListener.setPaymentButtonEnabled(false);
         mDataListener.showProgressDialog();

@@ -3,9 +3,7 @@ package piuk.blockchain.android.ui.contacts.pairing;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.QrCodeDataManager;
 import piuk.blockchain.android.injection.Injector;

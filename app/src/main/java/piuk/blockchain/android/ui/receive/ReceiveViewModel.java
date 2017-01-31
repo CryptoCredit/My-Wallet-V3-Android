@@ -1,7 +1,5 @@
 package piuk.blockchain.android.ui.receive;
 
-import com.google.common.collect.HashBiMap;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,14 +15,10 @@ import android.util.Log;
 import android.util.Pair;
 import android.util.SparseIntArray;
 import android.webkit.MimeTypeMap;
-
+import com.google.common.collect.HashBiMap;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.PayloadManager;
-
-import org.bitcoinj.uri.BitcoinURI;
-import org.bitcoinj.uri.BitcoinURIParseException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -35,9 +29,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
 import javax.inject.Inject;
-
+import org.bitcoinj.uri.BitcoinURI;
+import org.bitcoinj.uri.BitcoinURIParseException;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.QrCodeDataManager;
 import piuk.blockchain.android.injection.Injector;

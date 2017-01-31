@@ -1,7 +1,5 @@
 package piuk.blockchain.android.ui.balance;
 
-import com.google.common.collect.HashBiMap;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -9,23 +7,20 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
-
-import info.blockchain.api.Settings;
+import com.google.common.collect.HashBiMap;
+import info.blockchain.wallet.api.Settings;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.ImportedAccount;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.transaction.Tx;
-
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
 import piuk.blockchain.android.BR;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.TransactionListDataManager;

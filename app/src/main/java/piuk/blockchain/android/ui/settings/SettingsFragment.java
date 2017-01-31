@@ -1,5 +1,12 @@
 package piuk.blockchain.android.ui.settings;
 
+import static android.app.Activity.RESULT_OK;
+import static piuk.blockchain.android.R.string.email;
+import static piuk.blockchain.android.R.string.success;
+import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATED_PIN;
+import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATING_PIN_FOR_RESULT;
+import static piuk.blockchain.android.ui.auth.PinEntryFragment.REQUEST_CODE_VALIDATE_PIN;
+
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
@@ -33,15 +40,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.mukesh.countrypicker.fragments.CountryPicker;
 import com.mukesh.countrypicker.models.Country;
-
-import info.blockchain.api.Settings;
-import info.blockchain.wallet.util.CharSequenceX;
+import info.blockchain.wallet.api.Settings;
 import info.blockchain.wallet.util.FormatsUtil;
 import info.blockchain.wallet.util.PasswordUtil;
-
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.auth.PinEntryActivity;
@@ -56,13 +59,6 @@ import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.RootUtil;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static android.app.Activity.RESULT_OK;
-import static piuk.blockchain.android.R.string.email;
-import static piuk.blockchain.android.R.string.success;
-import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATED_PIN;
-import static piuk.blockchain.android.ui.auth.PinEntryFragment.KEY_VALIDATING_PIN_FOR_RESULT;
-import static piuk.blockchain.android.ui.auth.PinEntryFragment.REQUEST_CODE_VALIDATE_PIN;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, SettingsViewModel.DataListener {
 
@@ -374,11 +370,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     }
 
     @Override
-    public void showFingerprintDialog(CharSequenceX pincode) {
+    public void showFingerprintDialog(String pincode) {
         FingerprintDialog dialog = FingerprintDialog.newInstance(pincode, FingerprintDialog.Stage.REGISTER_FINGERPRINT);
         dialog.setAuthCallback(new FingerprintDialog.FingerprintAuthCallback() {
             @Override
-            public void onAuthenticated(CharSequenceX data) {
+            public void onAuthenticated(String data) {
                 dialog.dismiss();
                 viewModel.setFingerprintUnlockEnabled(true);
             }
@@ -689,7 +685,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
                 .setCancelable(false)
                 .setPositiveButton(R.string.update, (dialogInterface, i) -> {
                     String hint = editText.getText().toString();
-                    if (!hint.equals(viewModel.getTempPassword().toString())) {
+                    if (!hint.equals(viewModel.getTempPassword())) {
                         viewModel.updatePasswordHint(hint);
                     } else {
                         ToastCustom.makeText(getActivity(), getString(R.string.hint_reveals_password_error), ToastCustom.LENGTH_LONG, ToastCustom.TYPE_ERROR);
@@ -712,7 +708,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         if (requestCode == REQUEST_CODE_VALIDATE_PIN && resultCode == RESULT_OK) {
             viewModel.pinCodeValidatedForChange();
         } else if (requestCode == REQUEST_CODE_VALIDATE_PIN_FOR_FINGERPRINT && resultCode == RESULT_OK) {
-            viewModel.pinCodeValidatedForFingerprint(new CharSequenceX(data.getStringExtra(KEY_VALIDATED_PIN)));
+            viewModel.pinCodeValidatedForFingerprint(data.getStringExtra(KEY_VALIDATED_PIN));
         }
     }
 
@@ -801,10 +797,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
                 String currentPw = currentPassword.getText().toString();
                 String newPw = newPassword.getText().toString();
                 String newConfirmedPw = newPasswordConfirmation.getText().toString();
-                CharSequenceX walletPassword = viewModel.getTempPassword();
+                String walletPassword = viewModel.getTempPassword();
 
                 if (!currentPw.equals(newPw)) {
-                    if (currentPw.equals(walletPassword.toString())) {
+                    if (currentPw.equals(walletPassword)) {
                         if (newPw.equals(newConfirmedPw)) {
                             if (newConfirmedPw.length() < 4 || newConfirmedPw.length() > 255) {
                                 ToastCustom.makeText(getActivity(), getString(R.string.invalid_password), ToastCustom.LENGTH_SHORT, ToastCustom.TYPE_ERROR);
@@ -823,12 +819,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
                                         })
                                         .setNegativeButton(R.string.polite_no, (dialog1, which) -> {
                                             alertDialog.dismiss();
-                                            viewModel.updatePassword(new CharSequenceX(newConfirmedPw), walletPassword);
+                                            viewModel.updatePassword(newConfirmedPw, walletPassword);
                                         })
                                         .show();
                             } else {
                                 alertDialog.dismiss();
-                                viewModel.updatePassword(new CharSequenceX(newConfirmedPw), walletPassword);
+                                viewModel.updatePassword(newConfirmedPw, walletPassword);
                             }
                         } else {
                             newPasswordConfirmation.setText("");

@@ -1,6 +1,6 @@
 package piuk.blockchain.android.ui.account;
 
-import com.google.zxing.BarcodeFormat;
+import static piuk.blockchain.android.ui.account.AccountViewModel.KEY_WARN_TRANSFER_ALL;
 
 import android.Manifest;
 import android.app.Activity;
@@ -26,18 +26,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-
+import com.google.zxing.BarcodeFormat;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.ImportedAccount;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
-
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.connectivity.ConnectivityStatus;
 import piuk.blockchain.android.databinding.ActivityAccountsBinding;
@@ -54,8 +51,6 @@ import piuk.blockchain.android.util.PermissionUtil;
 import piuk.blockchain.android.util.PrefsUtil;
 import piuk.blockchain.android.util.ViewUtils;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static piuk.blockchain.android.ui.account.AccountViewModel.KEY_WARN_TRANSFER_ALL;
 
 public class AccountActivity extends BaseAuthActivity implements AccountViewModel.DataListener {
 
@@ -174,7 +169,7 @@ public class AccountActivity extends BaseAuthActivity implements AccountViewMode
 
             @Override
             public void onSecondPasswordValidated(String validateSecondPassword) {
-                viewModel.setDoubleEncryptionPassword(new CharSequenceX(validateSecondPassword));
+                viewModel.setDoubleEncryptionPassword(validateSecondPassword);
                 viewModel.onScanButtonClicked();
             }
         });
@@ -190,7 +185,7 @@ public class AccountActivity extends BaseAuthActivity implements AccountViewMode
 
             @Override
             public void onSecondPasswordValidated(String validateSecondPassword) {
-                viewModel.setDoubleEncryptionPassword(new CharSequenceX(validateSecondPassword));
+                viewModel.setDoubleEncryptionPassword(validateSecondPassword);
                 promptForAccountLabel();
             }
         });
@@ -399,7 +394,7 @@ public class AccountActivity extends BaseAuthActivity implements AccountViewMode
                 .setView(ViewUtils.getAlertDialogEditTextLayout(this, password))
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, (dialog, whichButton) ->
-                        viewModel.importBip38Address(data, new CharSequenceX(password.getText().toString())))
+                        viewModel.importBip38Address(data, password.getText().toString()))
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
     }

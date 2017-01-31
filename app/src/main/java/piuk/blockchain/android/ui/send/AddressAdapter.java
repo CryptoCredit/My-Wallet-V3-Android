@@ -7,9 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ItemAddressBinding;
 import piuk.blockchain.android.databinding.SpinnerItemBinding;

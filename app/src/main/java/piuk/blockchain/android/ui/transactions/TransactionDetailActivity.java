@@ -14,12 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.View;
-
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
-
 import java.util.List;
 import java.util.Locale;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityTransactionDetailsBinding;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;

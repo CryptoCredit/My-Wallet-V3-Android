@@ -1,5 +1,8 @@
 package piuk.blockchain.android.ui.contacts.detail;
 
+import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_HASH;
+import static piuk.blockchain.android.ui.contacts.list.ContactsListActivity.KEY_BUNDLE_CONTACT_ID;
+
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -12,16 +15,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityContactDetailBinding;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;
 import piuk.blockchain.android.ui.customviews.MaterialProgressDialog;
 import piuk.blockchain.android.ui.send.SendFragment;
 import piuk.blockchain.android.ui.transactions.TransactionDetailActivity;
-
-import static piuk.blockchain.android.ui.balance.BalanceFragment.KEY_TRANSACTION_HASH;
-import static piuk.blockchain.android.ui.contacts.list.ContactsListActivity.KEY_BUNDLE_CONTACT_ID;
 
 public class ContactDetailActivity extends BaseAuthActivity implements
         ContactDetailActivityViewModel.DataListener,

@@ -1,28 +1,22 @@
 package piuk.blockchain.android.data.datamanagers;
 
-import android.support.annotation.Nullable;
+import static piuk.blockchain.android.data.services.AddressInfoService.PARAMETER_FINAL_BALANCE;
 
-import android.support.v4.media.MediaBrowserCompat;
+import android.support.annotation.Nullable;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.LegacyAddress;
 import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
-import info.blockchain.wallet.util.CharSequenceX;
 import info.blockchain.wallet.util.DoubleEncryptionFactory;
-
 import info.blockchain.wallet.util.PrivateKeyFactory;
-import org.bitcoinj.core.Base58;
-import org.bitcoinj.core.ECKey;
-
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.exceptions.Exceptions;
+import java.util.List;
+import org.bitcoinj.core.Base58;
+import org.bitcoinj.core.ECKey;
 import piuk.blockchain.android.data.rxjava.RxUtil;
 import piuk.blockchain.android.data.services.AddressInfoService;
-
-import static piuk.blockchain.android.data.services.AddressInfoService.PARAMETER_FINAL_BALANCE;
 
 public class AccountDataManager {
 
@@ -43,9 +37,9 @@ public class AccountDataManager {
      * @param secondPassword An optional double encryption password
      * @return An {@link Observable<Account>} wrapping the newly created Account
      */
-    public Observable<Account> createNewAccount(String accountLabel, @Nullable CharSequenceX secondPassword) {
+    public Observable<Account> createNewAccount(String accountLabel, @Nullable String secondPassword) {
         return Observable.fromCallable(() -> payloadManager.addAccount(accountLabel,
-                secondPassword != null ? secondPassword.toString() : null))
+                secondPassword != null ? secondPassword : null))
                 .compose(RxUtil.applySchedulersToObservable());
     }
 
@@ -57,7 +51,7 @@ public class AccountDataManager {
      * @param secondPassword An optional double encryption password
      * @return An {@link Observable<Boolean>} representing a successful save
      */
-    public Observable<Boolean> setPrivateKey(ECKey key, @Nullable CharSequenceX secondPassword) {
+    public Observable<Boolean> setPrivateKey(ECKey key, @Nullable String secondPassword) {
         return Observable.fromCallable(() -> payloadManager.setKeyForLegacyAddress(key, secondPassword))
                 .compose(RxUtil.applySchedulersToObservable());
     }
@@ -69,7 +63,7 @@ public class AccountDataManager {
      * @param key            The {@link ECKey} for the address
      * @param secondPassword An optional double encryption password
      */
-    public void setKeyForLegacyAddress(LegacyAddress legacyAddress, ECKey key, @Nullable CharSequenceX secondPassword) throws Exception {
+    public void setKeyForLegacyAddress(LegacyAddress legacyAddress, ECKey key, @Nullable String secondPassword) throws Exception {
         // If double encrypted, save encrypted in payload
         if (!payloadManager.getPayload().isDoubleEncrypted()) {
             legacyAddress.setEncryptedKeyBytes(key.getPrivKeyBytes());
@@ -77,7 +71,7 @@ public class AccountDataManager {
             String encryptedKey = Base58.encode(key.getPrivKeyBytes());
             String encrypted2 = DoubleEncryptionFactory.getInstance().encrypt(encryptedKey,
                     payloadManager.getPayload().getSharedKey(),
-                    secondPassword != null ? secondPassword.toString() : null,
+                    secondPassword != null ? secondPassword : null,
                     payloadManager.getPayload().getOptions().getIterations());
 
             legacyAddress.setEncryptedKey(encrypted2);

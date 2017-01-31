@@ -1,7 +1,6 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.Notifications;
-
+import info.blockchain.wallet.api.Notifications;
 import io.reactivex.Completable;
 import io.reactivex.schedulers.Schedulers;
 

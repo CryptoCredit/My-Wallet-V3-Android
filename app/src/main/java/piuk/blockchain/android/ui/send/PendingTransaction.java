@@ -2,9 +2,7 @@ package piuk.blockchain.android.ui.send;
 
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payment.data.SpendableUnspentOutputs;
-
 import java.math.BigInteger;
-
 import piuk.blockchain.android.ui.account.ItemAccount;
 
 public class PendingTransaction {

@@ -1,29 +1,5 @@
 package piuk.blockchain.android.ui.fingerprint;
 
-import android.content.Context;
-import android.os.Bundle;
-
-import info.blockchain.wallet.util.CharSequenceX;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
-import org.robolectric.annotation.Config;
-
-import piuk.blockchain.android.BlockchainTestApplication;
-import piuk.blockchain.android.BuildConfig;
-import piuk.blockchain.android.R;
-import piuk.blockchain.android.injection.ApiModule;
-import piuk.blockchain.android.injection.ApplicationModule;
-import piuk.blockchain.android.injection.DataManagerModule;
-import piuk.blockchain.android.injection.Injector;
-import piuk.blockchain.android.injection.InjectorTestUtils;
-import piuk.blockchain.android.util.PrefsUtil;
-
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
@@ -34,6 +10,26 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static piuk.blockchain.android.ui.fingerprint.FingerprintDialog.KEY_BUNDLE_PIN_CODE;
 import static piuk.blockchain.android.ui.fingerprint.FingerprintDialog.KEY_BUNDLE_STAGE;
+
+import android.content.Context;
+import android.os.Bundle;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
+import org.robolectric.annotation.Config;
+import piuk.blockchain.android.BlockchainTestApplication;
+import piuk.blockchain.android.BuildConfig;
+import piuk.blockchain.android.R;
+import piuk.blockchain.android.injection.ApiModule;
+import piuk.blockchain.android.injection.ApplicationModule;
+import piuk.blockchain.android.injection.DataManagerModule;
+import piuk.blockchain.android.injection.Injector;
+import piuk.blockchain.android.injection.InjectorTestUtils;
+import piuk.blockchain.android.util.PrefsUtil;
 
 @SuppressWarnings("PrivateMemberAccessBetweenOuterAndInnerClass")
 @Config(sdk = 23, constants = BuildConfig.class, application = BlockchainTestApplication.class)
@@ -146,7 +142,7 @@ public class FingerprintDialogViewModelTest {
         Bundle bundle = new Bundle();
         bundle.putString(KEY_BUNDLE_STAGE, FingerprintDialog.Stage.REGISTER_FINGERPRINT);
         String pincode = "1234";
-        CharSequenceX data = new CharSequenceX("");
+        String data = new String("");
         bundle.putString(KEY_BUNDLE_PIN_CODE, pincode);
         when(activity.getBundle()).thenReturn(bundle);
         doAnswer(invocation -> {

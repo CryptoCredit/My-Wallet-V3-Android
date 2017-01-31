@@ -1,15 +1,12 @@
 package piuk.blockchain.android.ui.contacts.payments;
 
 import android.support.annotation.StringRes;
-
 import info.blockchain.wallet.contacts.data.Contact;
 import info.blockchain.wallet.contacts.data.PaymentRequest;
 import info.blockchain.wallet.contacts.data.RequestForPaymentRequest;
 import info.blockchain.wallet.payload.PayloadManager;
-
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
+import javax.inject.Inject;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.contacts.ContactsPredicates;
 import piuk.blockchain.android.data.contacts.PaymentRequestType;

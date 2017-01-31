@@ -4,9 +4,7 @@ import java.math.BigInteger;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
-
 import javax.inject.Inject;
-
 import piuk.blockchain.android.injection.Injector;
 import piuk.blockchain.android.util.ExchangeRateFactory;
 import piuk.blockchain.android.util.MonetaryUtil;

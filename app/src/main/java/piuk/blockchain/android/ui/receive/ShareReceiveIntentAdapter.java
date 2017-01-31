@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
-
 import piuk.blockchain.android.R;
 
 public class ShareReceiveIntentAdapter extends RecyclerView.Adapter<ShareReceiveIntentAdapter.ViewHolder> {

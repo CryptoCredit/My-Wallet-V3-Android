@@ -1,8 +1,5 @@
 package piuk.blockchain.android.data.notifications;
 
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,7 +9,8 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 import piuk.blockchain.android.R;

@@ -1,5 +1,7 @@
 package piuk.blockchain.android.ui.transactions;
 
+import static piuk.blockchain.android.ui.transactions.TransactionDetailActivity.KEY_TRANSACTION_URL;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -7,12 +9,9 @@ import android.view.KeyEvent;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;
 import piuk.blockchain.android.util.annotations.Thunk;
-
-import static piuk.blockchain.android.ui.transactions.TransactionDetailActivity.KEY_TRANSACTION_URL;
 
 public class TransactionDetailWebViewActivity extends BaseAuthActivity {
 

@@ -1,13 +1,11 @@
 package piuk.blockchain.android;
 
 import android.support.annotation.CallSuper;
-
-import org.junit.After;
-import org.junit.Before;
-
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.internal.schedulers.TrampolineScheduler;
 import io.reactivex.plugins.RxJavaPlugins;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * Created by adambennett on 08/08/2016.

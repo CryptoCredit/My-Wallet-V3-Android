@@ -1,8 +1,5 @@
 package piuk.blockchain.android.ui.account;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,8 +8,8 @@ import android.support.annotation.StringRes;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 import android.view.View;
-
-import info.blockchain.util.FeeUtil;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 import info.blockchain.wallet.multiaddr.MultiAddrFactory;
 import info.blockchain.wallet.payload.Account;
 import info.blockchain.wallet.payload.HDWallet;
@@ -22,22 +19,18 @@ import info.blockchain.wallet.payload.Payload;
 import info.blockchain.wallet.payload.PayloadManager;
 import info.blockchain.wallet.payment.Payment;
 import info.blockchain.wallet.send.SendCoins;
-import info.blockchain.wallet.util.CharSequenceX;
 import info.blockchain.wallet.util.DoubleEncryptionFactory;
+import info.blockchain.wallet.util.FeeUtil;
 import info.blockchain.wallet.util.PrivateKeyFactory;
-
+import io.reactivex.exceptions.Exceptions;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
 import org.bitcoinj.core.Base58;
 import org.bitcoinj.core.ECKey;
 import org.bitcoinj.crypto.BIP38PrivateKey;
 import org.bitcoinj.params.MainNetParams;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import io.reactivex.exceptions.Exceptions;
 import piuk.blockchain.android.BuildConfig;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.datamanagers.AccountEditDataManager;
@@ -398,7 +391,7 @@ public class AccountEditViewModel extends BaseViewModel {
         List<ECKey> keys = new ArrayList<>();
         try {
             if (payloadManager.getPayload().isDoubleEncrypted()) {
-                ECKey walletKey = legacyAddress.getECKey(new CharSequenceX(secondPassword));
+                ECKey walletKey = legacyAddress.getECKey(secondPassword);
                 keys.add(walletKey);
             } else {
                 ECKey walletKey = legacyAddress.getECKey();

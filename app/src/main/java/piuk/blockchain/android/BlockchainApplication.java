@@ -1,24 +1,20 @@
 package piuk.blockchain.android;
 
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.security.ProviderInstaller;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
-
-import info.blockchain.BlockchainFramework;
-import info.blockchain.FrameworkInterface;
-import info.blockchain.api.PinStore;
-
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.security.ProviderInstaller;
+import dagger.Lazy;
+import info.blockchain.wallet.BlockchainFramework;
+import info.blockchain.wallet.FrameworkInterface;
+import info.blockchain.wallet.api.PinStore;
+import io.reactivex.plugins.RxJavaPlugins;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import dagger.Lazy;
-import io.reactivex.plugins.RxJavaPlugins;
 import piuk.blockchain.android.data.access.AccessState;
 import piuk.blockchain.android.data.connectivity.ConnectivityManager;
 import piuk.blockchain.android.data.services.PinStoreService;

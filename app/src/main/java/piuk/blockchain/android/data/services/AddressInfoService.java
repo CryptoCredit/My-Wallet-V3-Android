@@ -1,10 +1,9 @@
 package piuk.blockchain.android.data.services;
 
-import info.blockchain.api.AddressInfo;
+import info.blockchain.wallet.api.AddressInfo;
 import info.blockchain.wallet.payload.LegacyAddress;
-
-import piuk.blockchain.android.data.rxjava.RxUtil;
 import io.reactivex.Observable;
+import piuk.blockchain.android.data.rxjava.RxUtil;
 
 public class AddressInfoService {
 

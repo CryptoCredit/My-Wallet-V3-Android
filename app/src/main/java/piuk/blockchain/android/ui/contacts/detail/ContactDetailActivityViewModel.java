@@ -1,11 +1,9 @@
 package piuk.blockchain.android.ui.contacts.detail;
 
 import android.support.annotation.StringRes;
-
-import javax.inject.Inject;
-
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import javax.inject.Inject;
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.data.contacts.ContactsPredicates;
 import piuk.blockchain.android.data.datamanagers.ContactsDataManager;

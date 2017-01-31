@@ -14,12 +14,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.text.InputType;
 import android.view.View;
 import android.widget.FrameLayout;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
-
 import piuk.blockchain.android.R;
 import piuk.blockchain.android.databinding.ActivityContactsBinding;
 import piuk.blockchain.android.ui.base.BaseAuthActivity;
